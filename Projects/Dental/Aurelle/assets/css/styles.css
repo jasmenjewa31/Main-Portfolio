@@ -1,0 +1,134 @@
+:root {
+  --sand-50: #fbf9f6;
+  --sand-100: #f4efe8;
+  --sand-200: #e7dfd5;
+  --sand-300: #d5c7b5;
+  --stone-800: #2b2825;
+  --stone-900: #1a1816;
+  --terracotta: #a65237;
+  --terracotta-light: #c8684b;
+  --sage: #5a6b5c;
+  --glass-border: rgba(26, 24, 22, 0.08);
+  --glass-bg: rgba(251, 249, 246, 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sand-50: #141312;
+    --sand-100: #1e1c1a;
+    --sand-200: #2d2a26;
+    --sand-300: #423d37;
+    --stone-800: #ece7e1;
+    --stone-900: #f7f4f0;
+    --terracotta: #d97757;
+    --terracotta-light: #e88e70;
+    --sage: #819884;
+    --glass-border: rgba(247, 244, 240, 0.1);
+    --glass-bg: rgba(20, 19, 18, 0.8);
+  }
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+  background-color: var(--sand-50);
+  color: var(--stone-800);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-serif-title { font-family: 'Cinzel', serif; }
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+header, main, footer { position: relative; z-index: 10; }
+
+/* Structural Glass Panel */
+.arch-card {
+  background: var(--sand-100);
+  border: 1px solid var(--glass-border);
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.arch-card:hover {
+  border-color: var(--terracotta);
+}
+
+/* Image reveal overlay */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+.img-reveal img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  filter: grayscale(15%);
+}
+.img-reveal:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* Custom Interactive Before/After Comparison */
+.ba-slider {
+  position: relative;
+  user-select: none;
+  touch-action: pan-y;
+}
+.ba-slider .after-img {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+  border-right: 2px solid var(--terracotta);
+}
+
+.cta-btn {
+  background-color: var(--stone-900);
+  color: var(--sand-50);
+  padding: 0.85rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.cta-btn:hover {
+  background-color: var(--terracotta);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--sand-50); }
+::-webkit-scrollbar-thumb { background: var(--sand-300); }
+
+/* Refined portfolio and consultation */
+.section-eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.24em; font-weight:700; color:var(--terracotta); }
+.portfolio-layout { display:grid; grid-template-columns:1fr 1.6fr; gap:48px; align-items:start; }
+.case-row { border-top:1px solid var(--sand-300); padding:28px 0; display:grid; grid-template-columns:48px 1fr; gap:20px; }
+.case-number { color:var(--terracotta); font-family:'Cinzel',serif; font-size:24px; }
+.case-row h3 { font-family:'Cinzel',serif; font-size:23px; line-height:1.35; color:var(--stone-900); }
+.case-row p { font-size:14px; line-height:1.8; margin-top:12px; }
+.case-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.case-tags span { padding:7px 10px; border:1px solid var(--sand-300); font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
+.access-section { background:#242521; color:#f7f4f0; }
+.access-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.access-step { display:flex; gap:16px; padding:18px 0; border-bottom:1px solid #ffffff20; }
+.access-step span { color:#d99c80; font-size:12px; }
+.access-step p { color:#cfcfc3; font-size:13px; line-height:1.7; }
+.access-form { background:var(--sand-50); color:var(--stone-900); padding:36px; }
+.access-form label { display:block; font-size:11px; font-weight:600; margin-bottom:8px; letter-spacing:.08em; text-transform:uppercase; }
+.access-form input,.access-form select,.access-form textarea { width:100%; padding:13px; border:1px solid var(--sand-300); background:var(--sand-100); color:var(--stone-900); font:inherit; font-size:14px; border-radius:0; }
+.access-form input:focus,.access-form select:focus,.access-form textarea:focus { outline:2px solid var(--terracotta); outline-offset:2px; }
+.access-form .form-field { margin-top:20px; }
+.access-form button { margin-top:24px; width:100%; }
+.access-form small { display:block; font-size:11px; line-height:1.7; margin-top:12px; }
+.access-section a:focus-visible,.case-row a:focus-visible { outline:2px solid #d99c80; outline-offset:5px; }
+@media(max-width:800px) { .portfolio-layout,.access-layout { grid-template-columns:1fr; gap:32px; } .access-form { padding:24px; } }

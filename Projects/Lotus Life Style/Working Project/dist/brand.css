@@ -1,0 +1,39 @@
+/* Feminine profile and lotus petals, drawn as one gold botanical emblem. */
+.brand,.footer-brand{position:relative;display:inline-flex;flex-direction:row;align-items:center;justify-content:center;width:226px;height:118px;flex-shrink:0;gap:13px;line-height:1;text-decoration:none;color:inherit}
+.brand .lotus-emblem,.footer-brand .lotus-emblem{position:static;width:77px;height:96px;object-fit:contain;opacity:1;animation:none;transform:none;flex:none;transition:transform .7s ease}
+.brand .lotus-type,.footer-brand .lotus-type{display:block;position:relative;margin:18px 0 0;text-align:center;line-height:1;letter-spacing:0}
+.brand .lotus-script,.footer-brand .lotus-script{display:block;font-family:'Allura','Segoe Script',cursive;font-size:73px;font-weight:400;line-height:.68;letter-spacing:-2px;transform:rotate(-5deg)}
+.brand .lotus-type small,.footer-brand .lotus-type small{display:block;margin:17px 0 0;padding-left:5px;font-family:'DM Sans',sans-serif;font-size:7px;font-weight:500;line-height:1;letter-spacing:3px}
+.lotus-type small:before,.lotus-type small:after{content:none}
+.brand:hover .lotus-emblem,.footer-brand:hover .lotus-emblem{transform:translateY(-2px)}
+.footer-brand{width:330px;height:190px;margin-bottom:22px;gap:22px}.footer-brand .lotus-emblem{width:118px;height:152px}.footer-brand .lotus-script{font-size:108px}.footer-brand .lotus-type small{font-size:9px;letter-spacing:4px;margin-top:24px}
+.lotus-art{object-fit:contain}.about-hero>.lotus-art{display:block;width:135px;height:158px;margin:30px auto}.card .lotus-art{width:42%;height:65%;object-fit:contain}
+header:has(>.brand){height:134px}.page-nav{top:134px}
+@media(max-width:650px){.brand{width:183px;height:102px;gap:9px}.brand .lotus-emblem{width:63px;height:83px}.brand .lotus-type{margin-top:15px}.brand .lotus-script{font-size:61px}.brand .lotus-type small{font-size:6px;letter-spacing:2.4px;margin-top:15px;padding-left:3px}.footer-brand{width:270px;height:165px;gap:17px}.footer-brand .lotus-emblem{width:98px;height:127px}.footer-brand .lotus-script{font-size:87px}header:has(>.brand){height:162px;row-gap:4px;align-content:center}.page-nav{top:162px}}
+@media(prefers-reduced-motion:reduce){.brand .lotus-emblem,.footer-brand .lotus-emblem{transition:none}}
+.about-symbol .lotus-art{position:static;display:block;width:100%;height:auto;max-height:185px;object-fit:contain;background:none;filter:brightness(1.2);transform:none}.about-symbol{top:16%;left:25%;width:50%}
+/* Keep the descriptor tucked into the handwritten signature. */
+.brand .lotus-type small{margin-top:6px}.footer-brand .lotus-type small{margin-top:10px}
+@media(max-width:650px){.brand .lotus-type small{margin-top:5px}.footer-brand .lotus-type small{margin-top:8px}}
+/* A generous signature above the four movement cards. */
+#home .identity{padding:42px 5% 12px}
+#home .identity .brand{width:min(650px,100%);height:280px;gap:25px;max-width:100%}
+#home .identity .lotus-emblem{width:215px;height:255px}
+#home .identity .lotus-type{margin-top:35px}
+#home .identity .lotus-script{font-size:210px;letter-spacing:-5px}
+#home .identity .lotus-type small{font-size:14px;letter-spacing:6px;margin-top:16px;padding-left:12px}
+#home .identity p{font-size:18px;margin:13px 0 10px;letter-spacing:.3px}
+@media(max-width:900px){#home .identity .brand{width:540px;height:240px;gap:19px}#home .identity .lotus-emblem{width:175px;height:210px}#home .identity .lotus-script{font-size:170px}#home .identity .lotus-type small{font-size:12px;letter-spacing:5px}}
+@media(max-width:650px){#home .identity{padding:32px 6% 9px}#home .identity .brand{width:100%;height:clamp(160px,45vw,220px);gap:3vw}#home .identity .lotus-emblem{width:32%;height:95%;max-height:200px}#home .identity .lotus-type{margin-top:23px}#home .identity .lotus-script{font-size:clamp(93px,28vw,155px);letter-spacing:-3px}#home .identity .lotus-type small{font-size:clamp(8px,2.2vw,11px);letter-spacing:3px;margin-top:10px;padding-left:6px}#home .identity p{font-size:14px;margin:10px 0}}
+/* Readable navigation labels at the requested 18px size. */
+header nav,header .world-link{font-size:18px;line-height:1.4}
+header nav a{white-space:nowrap}
+@media(max-width:650px){header:has(>.brand){height:220px;align-content:center;row-gap:10px}header nav{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px;justify-items:center}header nav a{padding:6px 0}.page-nav{top:220px}header .world-link{padding:9px 12px}}
+@media(max-width:380px){header .brand{width:145px;gap:5px}header .brand .lotus-emblem{width:49px;height:70px}header .brand .lotus-script{font-size:49px}header .brand .lotus-type small{font-size:6px;letter-spacing:1.7px}}
+/* Prominent studio navigation with generous, readable targets. */
+header nav{font-size:24px;font-weight:600;gap:30px;align-items:center}
+header nav a{padding:12px 3px;line-height:1.3;letter-spacing:.1px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+header nav a[aria-current],header nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+header .world-link{font-size:20px;font-weight:600;padding:13px 20px;border-color:var(--accent);color:var(--accent)}
+@media(min-width:651px) and (max-width:1100px){header nav{gap:18px;font-size:22px}header{gap:18px}header:has(>.brand){padding-inline:4%}header .brand{width:190px;gap:8px}header .brand .lotus-emblem{width:64px;height:88px}header .brand .lotus-script{font-size:64px}}
+@media(max-width:650px){header:has(>.brand){height:236px}header nav{font-size:22px;gap:7px 12px}header nav a{padding:8px 0}header .world-link{font-size:19px;padding:10px 12px}.page-nav{top:236px}}

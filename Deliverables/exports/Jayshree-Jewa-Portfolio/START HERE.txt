@@ -1,0 +1,12 @@
+HOW TO OPEN YOUR PORTFOLIO
+
+1. Right-click the ZIP file and select Extract All.
+2. Open the extracted Jayshree-Jewa-Portfolio folder.
+3. Double-click index.html to open your website in your browser.
+
+Do not open index.html directly inside the ZIP.
+Keep index.html, styles.css, gallery.js, motion.js and the assets folder together.
+Internet access is needed for the Google Fonts; a serif fallback is available offline.
+
+To publish: upload all the website files and the assets folder together to your web host.
+Social links and booking destinations still need your contact details before publication.
