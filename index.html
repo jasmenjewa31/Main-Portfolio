@@ -1,10 +1,952 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0;url=Projects/Creative%20Portfolio/index.html">
-  <title>Creative Portfolio</title>
-</head>
-<body><p><a href="Projects/Creative%20Portfolio/index.html">Open the main portfolio</a></p></body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="3D portfolio website concept for Malaysian brands, performers, creators, and service businesses."
+    />
+    <title>Creative Portfolio Malaysia</title>
+    <style>
+      :root {
+        --carbon: #090909;
+        --ember: #de1b1b;
+        --pearl: #f5f0ea;
+        --brass: #d5a74f;
+        --lagoon: #44d0c6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--carbon);
+        color: var(--pearl);
+        font-family: Inter, Arial, Helvetica, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 50;
+        top: 0;
+        right: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(9, 9, 9, 0.72);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        width: min(100% - 40px, 1280px);
+        min-height: 72px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        line-height: 1.45;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        color: rgba(245, 240, 234, 0.7);
+        font-size: 14px;
+      }
+
+      .nav-links a:hover {
+        color: var(--pearl);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 1px solid rgba(222, 27, 27, 0.7);
+        border-radius: 999px;
+        padding: 0 18px;
+        color: var(--pearl);
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+        transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .button:hover {
+        background: var(--ember);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        padding-top: 72px;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 72px 72px;
+      }
+
+      .hero-bg,
+      .hero-bg img,
+      .hero-bg::after {
+        position: absolute;
+        inset: 0;
+      }
+
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        background: #050505;
+        opacity: 1;
+      }
+
+      .hero-bg::after {
+        content: "";
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(to bottom, transparent 0%, transparent 68%, rgba(9, 9, 9, 0.78) 100%);
+      }
+
+      .hero-inner,
+      .section-inner {
+        width: min(100% - 40px, 1280px);
+        margin: 0 auto;
+      }
+
+      .hero-inner {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        min-height: calc(100vh - 72px);
+        align-items: end;
+        padding-bottom: 64px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        margin: 0 0 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        padding: 7px 12px;
+        color: rgba(245, 240, 234, 0.82);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        backdrop-filter: blur(12px);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 980px;
+        margin-bottom: 28px;
+        color: var(--pearl);
+        font-size: clamp(4rem, 11vw, 9rem);
+        font-weight: 950;
+        letter-spacing: 0;
+        line-height: 0.82;
+        text-transform: uppercase;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        margin-bottom: 0;
+        color: rgba(245, 240, 234, 0.78);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .stats-panel {
+        margin-bottom: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        background: rgba(9, 9, 9, 0.56);
+        padding: 20px;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(18px);
+      }
+
+      .stats-grid,
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 16px;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--ember);
+        font-size: 34px;
+        font-weight: 950;
+        line-height: 1;
+      }
+
+      .stat span,
+      .mini-grid span {
+        display: block;
+        margin-top: 8px;
+        color: rgba(245, 240, 234, 0.6);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .stats-panel p {
+        margin: 20px 0 0;
+        color: rgba(245, 240, 234, 0.7);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .showcase,
+      .markets,
+      .contact {
+        position: relative;
+        overflow: hidden;
+        background: var(--carbon);
+        padding: 112px 0;
+      }
+
+      .showcase::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+      }
+
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .section-kicker {
+        margin-bottom: 16px;
+        color: var(--brass);
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .markets .section-kicker,
+      .process .section-kicker {
+        color: var(--ember);
+      }
+
+      .contact .section-kicker {
+        color: var(--lagoon);
+      }
+
+      h2 {
+        margin-bottom: 22px;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 950;
+        letter-spacing: 0;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .section-copy {
+        max-width: 760px;
+        color: rgba(245, 240, 234, 0.68);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .mini-grid {
+        margin-top: 32px;
+      }
+
+      .mini-grid span {
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 16px;
+        color: rgba(245, 240, 234, 0.74);
+      }
+
+      .showcase-figure {
+        margin: 0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px;
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.38);
+      }
+
+      .showcase-figure img {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .showcase-figure figcaption {
+        padding: 16px 8px 4px;
+        color: rgba(245, 240, 234, 0.6);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .markets-heading {
+        max-width: 780px;
+        margin-bottom: 48px;
+      }
+
+      .sector-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .tilt-card {
+        min-height: 310px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.045);
+        padding: 20px;
+        transform-style: preserve-3d;
+        transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+      }
+
+      .tilt-card:hover {
+        border-color: rgba(213, 167, 79, 0.55);
+        background: rgba(255, 255, 255, 0.075);
+      }
+
+      .depth-layer {
+        display: flex;
+        height: 100%;
+        min-height: 270px;
+        flex-direction: column;
+        justify-content: space-between;
+        transform: translateZ(34px);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+      }
+
+      .card-number {
+        color: var(--lagoon);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.2em;
+      }
+
+      .card-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--ember);
+      }
+
+      h3 {
+        margin-bottom: 14px;
+        color: var(--pearl);
+        font-size: 24px;
+        font-weight: 950;
+        line-height: 1.05;
+        text-transform: uppercase;
+      }
+
+      .card-kicker {
+        margin-bottom: 0;
+        color: var(--brass);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .card-copy {
+        margin: 36px 0 0;
+        color: rgba(245, 240, 234, 0.7);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .process {
+        overflow: hidden;
+        background: var(--pearl);
+        color: var(--carbon);
+        padding: 112px 0;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 48px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 24px;
+        border-bottom: 1px solid rgba(9, 9, 9, 0.15);
+        padding: 32px 0;
+      }
+
+      .step-number {
+        color: var(--ember);
+        font-size: 52px;
+        font-weight: 950;
+        line-height: 1;
+      }
+
+      .step h3 {
+        color: var(--carbon);
+      }
+
+      .step p {
+        max-width: 680px;
+        margin-bottom: 0;
+        color: rgba(9, 9, 9, 0.7);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .contact-box {
+        position: relative;
+        max-width: 860px;
+      }
+
+      .contact::after {
+        content: "";
+        position: absolute;
+        top: 60px;
+        right: 10%;
+        display: block;
+        width: 280px;
+        height: 280px;
+        border: 1px solid rgba(222, 27, 27, 0.4);
+        transform: rotate(12deg);
+      }
+
+      .contact-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 40px;
+      }
+
+      .primary-button {
+        min-height: 54px;
+        border: 1px solid var(--ember);
+        background: var(--ember);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 950;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .secondary-button {
+        min-height: 54px;
+        border-color: rgba(255, 255, 255, 0.2);
+        font-size: 14px;
+        font-weight: 950;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .secondary-button:hover {
+        border-color: var(--lagoon);
+        background: transparent;
+        color: var(--lagoon);
+      }
+
+      .parallax {
+        transform: translate3d(0, var(--parallax-y, 0px), 0);
+        will-change: transform;
+      }
+
+      @keyframes scan {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(120%);
+        }
+      }
+
+      @media (max-width: 1080px) {
+        .hero-inner,
+        .showcase-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-panel {
+          margin-bottom: 0;
+        }
+
+        .sector-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          min-height: auto;
+          padding-top: 72px;
+        }
+
+        .nav {
+          width: min(100% - 32px, 1280px);
+          min-height: 72px;
+        }
+
+        .brand {
+          max-width: 145px;
+          font-size: 13px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .button {
+          max-width: 132px;
+          min-height: 52px;
+          padding: 0 18px;
+        }
+
+        .hero-inner,
+        .section-inner {
+          width: min(100% - 40px, 1280px);
+        }
+
+        .hero-bg {
+          position: relative;
+          height: clamp(250px, 68vw, 340px);
+          overflow: hidden;
+          background: #050505;
+        }
+
+        .hero-inner {
+          min-height: auto;
+          gap: 28px;
+          padding-top: 28px;
+          padding-bottom: 32px;
+        }
+
+        .hero-bg img {
+          transform: none;
+          object-fit: contain;
+          object-position: 50% 50%;
+        }
+
+        h1 {
+          font-size: clamp(3.7rem, 16vw, 4.6rem);
+        }
+
+        h2 {
+          font-size: clamp(2.4rem, 13vw, 3.6rem);
+        }
+
+        .hero-copy,
+        .section-copy {
+          font-size: 16px;
+        }
+
+        .showcase,
+        .markets,
+        .process,
+        .contact {
+          padding: 76px 0;
+        }
+
+        .sector-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .contact::after {
+          display: none;
+        }
+
+        .contact-actions {
+          flex-direction: column;
+        }
+
+        .primary-button,
+        .secondary-button {
+          width: 100%;
+          max-width: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+
+        .parallax {
+          transform: none;
+        }
+      }
+      /* Reserve separate space for the artwork at every window size. */
+      .site-header { position: sticky; }
+      .hero { min-height: auto; padding-top: 0; }
+      .hero-bg {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1024 / 565;
+        max-height: 65svh;
+        background: #050505;
+      }
+      .hero-bg img { object-fit: contain; opacity: 1; transform: none; }
+      .hero-bg { aspect-ratio: 16 / 9; }
+      .hero-bg::after { display: none; }
+      .hero-inner {
+        min-height: auto;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        align-items: start;
+        padding-top: 40px;
+      }
+      .hero-inner > *, .process-grid > *, .step > * { min-width: 0; }
+      .hero h1 { font-size: 72px; line-height: 1; overflow-wrap: anywhere; }
+      .hero .stats-panel { margin-bottom: 0; }
+      .process-grid {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+      }
+      .process h2 { font-size: 48px; line-height: 1.12; margin-bottom: 0; }
+      .process .step:first-child { padding-top: 0; }
+      .process .step { grid-template-columns: 64px minmax(0, 1fr); }
+      @media (max-width: 1080px) {
+        .hero-inner, .process-grid { grid-template-columns: minmax(0, 1fr); }
+        .hero h1 { font-size: 64px; }
+        .process h2 { font-size: 44px; }
+        .nav { gap: 16px; }
+        .nav-links { gap: 14px; }
+      }
+      @media (max-width: 720px) {
+        .hero-bg { max-height: none; }
+        .hero-inner { padding-top: 28px; }
+        .hero h1 { font-size: 40px; }
+        .process h2 { font-size: 32px; }
+        .process-grid { gap: 32px; }
+        .process .step { grid-template-columns: 48px minmax(0, 1fr); gap: 16px; }
+        .process .step-number { font-size: 36px; }
+      }
+      /* Animated line field stays behind the process content. */
+      .process { position: relative; isolation: isolate; background: #101011; color: #f5f0ea; padding: 100px 0; border-top: 1px solid #333; }
+      .process * { letter-spacing: 0; }
+      .process-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+      .process .section-inner { position: relative; }
+      .process-heading { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: end; margin-bottom: 72px; }
+      .process .section-kicker { color: #ff7777; font-size: 22px; line-height: 1.4; margin-bottom: 24px; }
+      .process h2 { font-size: 64px; line-height: 1.06; margin: 0; }
+      .process h2 em { font-style: normal; color: #f34e4e; }
+      .process-intro { color: #d0d0d3; font-size: 17px; line-height: 1.8; margin: 0; max-width: 380px; }
+      .process-stages { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin: 0; padding: 0; }
+      .process-stage { border-top: 1px solid #ffffff40; padding-top: 24px; min-width: 0; }
+      .process-stage-number { display: block; color: #ff7777; font-size: 14px; margin-bottom: 24px; font-variant-numeric: tabular-nums; }
+      .process-stage h3 { font-size: 24px; line-height: 1.25; color: #fff; margin-bottom: 14px; }
+      .process-stage p { color: #c6c6ca; font-size: 15px; line-height: 1.8; margin: 0; }
+      @media (max-width: 1080px) {
+        .process-heading { gap: 32px; }
+        .process h2 { font-size: 48px; }
+        .process-stages { gap: 24px; }
+      }
+      @media (max-width: 720px) {
+        .process { padding: 64px 0; }
+        .process-heading { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-bottom: 40px; }
+        .process h2 { font-size: 36px; }
+        .process-intro { font-size: 15px; }
+        .process-stages { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+        .process-stage { padding-top: 20px; }
+        .process-stage-number { margin-bottom: 12px; }
+        .process-stage h3 { font-size: 22px; }
+      }
+      .contact { isolation: isolate; }
+      .contact > .section-inner { position: relative; z-index: 1; }
+      .contact::after { display: none; }
+      @media (max-width: 720px) {
+        .process .section-kicker { font-size: 18px; }
+      }
+      /* Natural image height keeps the full frame visible without side gaps. */
+      .hero .hero-bg { height: auto; max-height: none; aspect-ratio: auto; }
+      .hero .hero-bg img {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        opacity: 1;
+        transform: none;
+      }
+      .process #process-title { color: #ff7777; margin-bottom: 24px; }
+      .process-subtitle { display: block; font-size: 16px; line-height: 1.5; margin-top: 14px; }
+      .process-tagline { font-size: 28px; line-height: 1.4; font-weight: 800; text-transform: uppercase; margin: 0; }
+      .process-tagline em { color: var(--lagoon); font-style: normal; font-size: 1.25em; }
+      @media (max-width: 720px) {
+        .process-tagline { font-size: 22px; }
+        .process-subtitle { font-size: 14px; }
+      }
+      .contact-details { display: flex; flex-wrap: wrap; gap: 20px 40px; margin-top: 28px; font-style: normal; }
+      .contact-details a { font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; }
+      .contact-details a:hover { color: var(--lagoon); }
+      .contact-details a:focus-visible { outline: 2px solid var(--lagoon); outline-offset: 5px; }
+      .contact-details span { display: block; font-size: 12px; color: #bdbdbd; margin-bottom: 4px; }
+    
+      .genre-sites { margin-top: 22px; display: grid; gap: 10px; }
+      .project-link { display: block; padding: 12px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 12px; color: inherit; text-decoration: none; font-size: 14px; line-height: 1.5; }
+      .project-link:hover { background: rgba(255,255,255,.1); border-color: currentColor; }
+      .project-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+      .project-pending { font-size: 12px; opacity: .65; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top">Creative Portfolio</a>
+        <div class="nav-links">
+          <a href="#showcase">Showcase</a>
+          <a href="#markets">Markets</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="button" href="#contact">Start a Project</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="top" class="hero">
+        <div class="hero-bg">
+          <img src="Media/Images/portfolio-header-20260924.jpg" width="1024" height="565" fetchpriority="high"
+            alt="Woman beside a train with red PORTFOLIO lettering" />
+        </div>
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">Malaysia market ready</p>
+            <h1>3D Website Portfolio</h1>
+            <p class="hero-copy">
+              A cinematic, scroll-led portfolio website for Malaysian businesses that need to look premium, explain
+              their offer clearly, and turn visitors into enquiries.
+            </p>
+          </div>
+          <div class="stats-panel">
+            <div class="stats-grid">
+              <div class="stat"><strong>8</strong><span>Niche-ready directions</span></div>
+              <div class="stat"><strong>MY</strong><span>Malaysia-first positioning</span></div>
+              <div class="stat"><strong>3D</strong><span>Interactive visual layer</span></div>
+              <div class="stat"><strong>WA</strong><span>WhatsApp-friendly enquiries</span></div>
+            </div>
+            <p>
+              Premium visuals, sharp positioning, and enquiry-focused sections for Malaysian audiences who decide
+              quickly on mobile.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="showcase" class="showcase">
+        <div class="section-inner showcase-grid">
+          <div class="parallax" data-speed="-0.04">
+            <p class="section-kicker">Visual system</p>
+            <h2>One portfolio, many Malaysian business worlds.</h2>
+            <p class="section-copy">
+              This direction shows how one strong creative language can flex across fitness, skin care, creators,
+              industrial, fashion, food and digital services while still feeling premium and cohesive.
+            </p>
+            <div class="mini-grid">
+              <span>Scroll-led story</span>
+              <span>Mobile-first layouts</span>
+              <span>Brand-ready sections</span>
+              <span>Local enquiry flow</span>
+            </div>
+          </div>
+          <figure class="showcase-figure tilt-card parallax" data-speed="0.07">
+            <img
+              src="Media/Images/4147bbe8-c0d5-4b1c-9535-98da9a227876.png"
+              alt="Collage of niche website portfolio concepts"
+            />
+            <figcaption>
+              Sample direction for niche portfolio pages, campaign microsites, and premium service websites.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="markets" class="markets">
+        <div class="section-inner">
+          <div class="markets-heading">
+            <p class="section-kicker">Portfolio directions</p>
+            <h2>Explore websites by genre.</h2>
+            <p class="section-copy">
+              Browse the featured websites below. Each genre brings together projects with their own identity, story, and experience.
+            </p>
+          </div>
+          <div class="sector-grid">
+            <article class="tilt-card" data-genre="industrial"><div class="depth-layer"><div><div class="card-top"><span class="card-number">01</span><span class="card-dot"></span></div><h3>Industrial Website Portfolio</h3><p class="card-kicker">Factories, suppliers, engineering teams</p></div><p class="card-copy">Built for Malaysian manufacturers that need credibility fast: capability pages, project galleries, certifications, WhatsApp enquiries, and tender-ready proof that buyers can trust.</p></div></article>
+            <article class="tilt-card" data-genre="arts"><div class="depth-layer"><div><div class="card-top"><span class="card-number">02</span><span class="card-dot"></span></div><h3>Performing Arts</h3><p class="card-kicker">Dancers, performers, creative artists</p></div><p class="card-copy">Expressive portfolios that bring performances, visual galleries, and an artist’s story together.</p></div></article>
+            <article class="tilt-card" data-genre="skincare"><div class="depth-layer"><div><div class="card-top"><span class="card-number">03</span><span class="card-dot"></span></div><h3>Skin Care</h3><p class="card-kicker">Clinics, beauty studios, local product lines</p></div><p class="card-copy">Clean, premium pages for treatments, routines, before-and-after stories, ingredient education, and launch campaigns shaped for Malaysian beauty shoppers.</p></div></article>
+            <article class="tilt-card" data-genre="fashion"><div class="depth-layer"><div><div class="card-top"><span class="card-number">04</span><span class="card-dot"></span></div><h3>Fashion Retail Shops</h3><p class="card-kicker">Boutiques, drops, modestwear, streetwear</p></div><p class="card-copy">Editorial product storytelling, collection lookbooks, size guidance, shop links, and campaign sections that make every launch feel sharper and easier to buy.</p></div></article>
+            <article class="tilt-card" data-genre="wellness"><div class="depth-layer"><div><div class="card-top"><span class="card-number">05</span><span class="card-dot"></span></div><h3>Pilates, Yoga &amp; Gym</h3><p class="card-kicker">Studios, instructors, wellness spaces</p></div><p class="card-copy">Class schedules, trainer profiles, membership offers, transformation stories, and calming-but-clear conversion paths for first-time visitors.</p></div></article>
+            <article class="tilt-card" data-genre="dental"><div class="depth-layer"><div><div class="card-top"><span class="card-number">06</span><span class="card-dot"></span></div><h3>Dental</h3><p class="card-kicker">Clinics, specialists, smile makeover teams</p></div><p class="card-copy">Trust-first web pages for services, doctor profiles, pricing guidance, patient journeys, appointment requests, and multilingual copy where needed.</p></div></article>
+            <article class="tilt-card" data-genre="creators"><div class="depth-layer"><div><div class="card-top"><span class="card-number">07</span><span class="card-dot"></span></div><h3>Content Creators</h3><p class="card-kicker">Influencers, educators, streamers, creators</p></div><p class="card-copy">A digital media kit with brand collaborations, audience proof, featured content, campaign packages, and a direct route for paid enquiries.</p></div></article>
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="process" aria-labelledby="process-title">
+        <canvas class="process-background" aria-hidden="true"></canvas>
+        <div class="section-inner">
+          <div class="process-heading">
+            <div>
+              <h2 id="process-title">How it works<span class="process-subtitle">From idea to impact</span></h2>
+              <p class="process-tagline">Attention. Trust.<br /><em>Real enquiries.</em></p>
+            </div>
+            <p class="process-intro">Good looks get the first glance. A clear story earns the next click. Here is how we bring both together for your business.</p>
+          </div>
+          <ol class="process-stages" role="list">
+            <li class="process-stage"><span class="process-stage-number" aria-hidden="true">01 / POSITION</span><h3>Find your edge</h3><p>Define your audience, sharpen your offer and tell a story that gives people a reason to choose you.</p></li>
+            <li class="process-stage"><span class="process-stage-number" aria-hidden="true">02 / DESIGN</span><h3>Make it distinct</h3><p>Bring your identity to life through expressive visuals, thoughtful layouts and purposeful movement.</p></li>
+            <li class="process-stage"><span class="process-stage-number" aria-hidden="true">03 / CONNECT</span><h3>Open the door</h3><p>Make the next step feel natural, from a first enquiry to an appointment or a visit to your shop.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <canvas class="process-background" aria-hidden="true"></canvas>
+        <div class="section-inner">
+          <div class="contact-box">
+            <p class="section-kicker">Project enquiries</p>
+            <h2>Launch a portfolio that feels impossible to ignore.</h2>
+            <p class="section-copy">
+              From beauty and dental to industrial suppliers and creators, the goal is simple: make the offer look
+              premium, feel local, and make the next step obvious.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary-button" href="mailto:jasmenjewa4@gmail.com">Email Enquiry</a>
+            <a class="button secondary-button" href="https://wa.me/601126490119">WhatsApp Enquiry</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="Projects/Creative Portfolio/portfolio-sites.js"></script>
+    <script src="Projects/Creative Portfolio/process-background.js"></script>
+    <script>
+      const parallaxItems = document.querySelectorAll(".parallax");
+      const tiltCards = document.querySelectorAll(".tilt-card");
+      const hero = document.querySelector(".hero");
+      const heroBg = document.querySelector(".hero-bg");
+
+      function updateParallax() {
+        parallaxItems.forEach((item) => {
+          const speed = Number(item.dataset.speed || 0);
+          item.style.setProperty("--parallax-y", `${window.scrollY * speed}px`);
+        });
+
+        if (heroBg) {
+          heroBg.style.setProperty("--hero-scroll", window.scrollY);
+        }
+      }
+
+      function updateHeroPointer(event) {
+        if (!hero || !heroBg) return;
+
+        const rect = hero.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width - 0.5).toFixed(3);
+        const y = ((event.clientY - rect.top) / rect.height - 0.5).toFixed(3);
+        heroBg.style.setProperty("--hero-pointer-x", x);
+        heroBg.style.setProperty("--hero-pointer-y", y);
+      }
+
+      function resetHeroPointer() {
+        if (!heroBg) return;
+
+        heroBg.style.setProperty("--hero-pointer-x", 0);
+        heroBg.style.setProperty("--hero-pointer-y", 0);
+      }
+
+      tiltCards.forEach((card) => {
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          const rotateY = (x / rect.width - 0.5) * 12;
+          const rotateX = (0.5 - y / rect.height) * 12;
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
+        });
+      });
+
+      updateParallax();
+      window.addEventListener("scroll", updateParallax, { passive: true });
+      if (hero) {
+        hero.addEventListener("mousemove", updateHeroPointer);
+        hero.addEventListener("mouseleave", resetHeroPointer);
+      }
+    </script>
+  </body>
 </html>

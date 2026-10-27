@@ -1,4 +1,5 @@
 // Add more sites to a genre below. Local paths are relative to this folder.
+const portfolioBaseUrl = document.currentScript.src;
 const portfolioSites = {
   industrial: [{ name: 'TERAS Heavy Industries', url: '../Industrial/industrial-site/dist/index.html' }],
   arts: [{ name: 'Jayshree Jewa — Classical Dance', url: '../../Deliverables/exports/Jayshree-Jewa-Portfolio/index.html' }],
@@ -17,7 +18,7 @@ document.querySelectorAll('[data-genre]').forEach(card => {
     sites.forEach(site => {
       const link = document.createElement('a');
       link.className = 'project-link';
-      link.href = site.url;
+      link.href = new URL(site.url, portfolioBaseUrl).href;
       link.textContent = `${site.name} ↗`;
       container.append(link);
     });
