@@ -58,10 +58,10 @@ const photos = [
     "title": "Rhythm and shadow",
     "category": "On Stage",
     "detail": "Bharatanatyam · Selected collection",
-    "caption": "An extended pose beneath a sculptural shadow.",
+    "caption": "A seated Bharatanatyam pose in red and gold beneath the shadow of Nataraja.",
     "credit": "Provided for this portfolio",
-    "ratio": "1254 / 1254",
-    "alt": "An extended pose beneath a sculptural shadow."
+    "ratio": "1086 / 1448",
+    "alt": "A seated Bharatanatyam pose in red and gold beneath the shadow of Nataraja."
   },
   {
     "id": "assets/temple.png",
@@ -90,7 +90,7 @@ const photos = [
     "detail": "Bharatanatyam · Selected collection",
     "caption": "A seated dance pose against a fan of peacock feathers.",
     "credit": "Provided for this portfolio",
-    "ratio": "960 / 681",
+    "ratio": "960 / 1280",
     "alt": "A seated dance pose against a fan of peacock feathers."
   },
   {
@@ -138,19 +138,20 @@ const zoomButton = document.querySelector('.zoom-button');
 const info = document.querySelector('.info-dialog');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-let visible = [...photos], current = 0, openingCard;
+const galleryPhotos = photos.filter(photo => photo.id !== 'assets/warm-portrait.png');
+let visible = [...galleryPhotos], current = 0, openingCard;
 const categories = ['All', 'On Stage', 'Abhinaya', 'Mudras & Details', 'Portraits'];
 const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
   entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.remove('reveal-pending'); entry.target.classList.add('revealed'); observer.unobserve(entry.target); } });
 }, {threshold:.05}) : null;
 categories.forEach(category => {
   const button = document.createElement('button'); button.className = 'filter';
-  const count = category === 'All' ? photos.length : photos.filter(p => p.category === category).length;
+  const count = category === 'All' ? galleryPhotos.length : galleryPhotos.filter(p => p.category === category).length;
   button.innerHTML = `${category === 'Abhinaya' ? 'Abhinaya (Expressions)' : category}<span>${count}</span>`;
   button.setAttribute('aria-pressed', String(category === 'All'));
   button.addEventListener('click', () => {
     filters.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-    visible = category === 'All' ? [...photos] : photos.filter(p => p.category === category);
+    visible = category === 'All' ? [...galleryPhotos] : galleryPhotos.filter(p => p.category === category);
     renderGallery();
   }); filters.append(button);
 });
@@ -192,7 +193,7 @@ function renderGallery(){
     const wrap = card.querySelector('.photo-wrap');
     card.querySelector('img').addEventListener('error',()=>wrap.classList.add('failed'));
     if (photoSet(photo) !== 'black') {
-    card.addEventListener('click',()=>{current=index;openingCard=card;showImage();modal.showModal();document.body.style.overflow='hidden';});
+    card.addEventListener('click',()=>{current=index;openingCard=card;modal.classList.add('collection-viewer');showImage();modal.showModal();document.body.style.overflow='hidden';});
     }
     card.addEventListener('pointermove',event=>{
       if(photoSet(photo) !== 'black' || !finePointer.matches || reducedMotion.matches || document.body.classList.contains('motion-paused'))return;
@@ -266,6 +267,7 @@ function arrangeColourCarousel() {
 }
 function resetZoom(){stage.classList.remove('zoomed');zoomButton.textContent='Zoom +';zoomButton.setAttribute('aria-pressed','false');stage.scrollTop=0;stage.scrollLeft=0;}
 function showImage(){
+  modal.classList.add("collection-viewer");
   const photo=visible[current]; resetZoom();fullImage.hidden=false;document.querySelector('.image-error').hidden=true;
   fullImage.src=imageURL(photo.id,2400);fullImage.alt=photo.alt || `${photo.title} — stock photograph by ${photo.credit}`;
   document.querySelector('#lightbox-title').textContent=photo.title;
@@ -279,9 +281,10 @@ function navigate(direction){current=(current+direction+visible.length)%visible.
 document.querySelector('.previous').addEventListener('click',()=>navigate(-1));
 document.querySelector('.next').addEventListener('click',()=>navigate(1));
 document.querySelector('.close-lightbox').addEventListener('click',()=>modal.close());
-modal.addEventListener('close',()=>{document.body.style.overflow='';resetZoom();openingCard?.focus({preventScroll:true});});
+modal.addEventListener('close',()=>{document.body.style.overflow='';modal.classList.remove('collection-viewer');resetZoom();openingCard?.focus({preventScroll:true});});
 modal.addEventListener('keydown',event=>{if(event.key==='ArrowRight'){event.preventDefault();navigate(1);}if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1);}});
-zoomButton.addEventListener('click',()=>{const zoomed=stage.classList.toggle('zoomed');zoomButton.setAttribute('aria-pressed',String(zoomed));zoomButton.textContent=zoomed?'Zoom −':'Zoom +';});
+zoomButton.hidden=true;
+zoomButton.disabled=true;
 let swipeStart=null;
 stage.addEventListener('touchstart',e=>{swipeStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
 stage.addEventListener('touchend',e=>{if(!swipeStart||stage.classList.contains('zoomed'))return;const dx=e.changedTouches[0].clientX-swipeStart.x,dy=e.changedTouches[0].clientY-swipeStart.y;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)navigate(dx<0?1:-1);swipeStart=null;},{passive:true});

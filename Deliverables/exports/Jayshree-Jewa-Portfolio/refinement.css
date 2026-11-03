@@ -1,0 +1,275 @@
+/* Responsive editorial refinement. Original portrait retained with a silhouette clip. */
+.site-header{height:88px;padding-inline:5%;background:var(--background);border-bottom:1px solid var(--border)}
+.cinematic-hero{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.45fr);grid-template-rows:auto auto auto;align-items:center;gap:0 3%;padding:55px 5% 24px;text-align:left;overflow:hidden;background:radial-gradient(ellipse at 65% 48%,#4b1420 0%,#24060d 37%,#180307 70%)}
+.cinematic-hero:before{display:none}
+.cinematic-hero .hero-copy{grid-column:1;grid-row:1;align-self:end;padding-top:35px}
+.cinematic-hero .eyebrow{font-size:10px;letter-spacing:.25em;line-height:1.8}
+.cinematic-hero h1{font-family:var(--serif);font-size:clamp(64px,7.4vw,120px);font-weight:400;text-transform:none;letter-spacing:-.045em;line-height:.92;margin:24px 0}
+.cinematic-hero h1 em{display:block;color:var(--accent)}
+.cinematic-hero .hero-subtitle{font-family:var(--sans);font-size:12px;line-height:1.9;max-width:29em;color:var(--text-secondary)}
+.hero-scene{grid-column:2;grid-row:1 / 3;display:grid;grid-template-columns:minmax(0,1fr) 145px;gap:20px;align-items:center;margin:0;width:100%;max-width:none;min-height:570px;perspective:1200px}
+.cinematic-hero .hero-art{grid-column:1;grid-row:1;width:120%;max-width:none;justify-self:end;align-self:center;pointer-events:none;isolation:auto}
+.cinematic-hero .arch{background:transparent!important;aspect-ratio:1284 / 1225;overflow:visible;border:0;border-radius:0}
+.cinematic-hero .arch>img{clip-path:url(#dancer-silhouette);object-fit:contain;width:100%;height:auto;filter:none;transform:none;mix-blend-mode:normal}
+.hero-filmstrip{grid-column:2;grid-row:1;width:100%;display:grid;grid-template-columns:1fr;gap:18px;padding:15px 0;margin:0;perspective:1400px;align-items:start}
+.hero-frame:nth-child(n){--turn:0deg;border-radius:60px 60px 4px 4px;border:1px solid var(--border);box-shadow:0 12px 28px #0003;background:var(--background);transform:translateY(var(--card-shift,0px)) rotateY(var(--pointer-x,0deg)) rotateX(var(--pointer-y,0deg));transition:box-shadow .3s,border-color .3s}
+.hero-frame img{aspect-ratio:1.2;height:120px;width:100%;object-fit:cover;object-position:center 30%}
+.hero-frame[data-feature="assets/temple.png"] img{object-fit:contain}
+.hero-frame span{font-size:10px;letter-spacing:.2em;padding:10px 4px;text-align:center}
+.hero-actions{grid-column:1;grid-row:2;align-self:start;justify-content:flex-start;flex-direction:column;align-items:flex-start;gap:12px;margin:28px 0 55px;width:100%}
+.hero-actions a{background:transparent;border:0;border-bottom:1px solid var(--border);padding:13px 0;border-radius:0;font-size:10px;letter-spacing:.12em;min-height:44px;gap:28px;justify-content:space-between;max-width:100%;transition:color .3s,border-color .3s}
+.hero-actions a:first-child{color:var(--text)}
+.hero-actions a:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
+.cinematic-hero .hero-bottom{grid-column:1/-1;width:100%;margin:12px 0 0;padding-top:20px;font-size:9px;letter-spacing:.16em}
+.collection{padding:90px 5% 65px;max-width:1680px;margin:auto}
+.section-heading{align-items:center;gap:35px;margin-bottom:30px}
+.section-heading h2{font-weight:400;font-size:clamp(44px,5vw,78px);letter-spacing:-.035em}
+.section-heading>p{font-size:12px;line-height:1.9}
+.filter-bar{padding:10px 0 18px;border-bottom:1px solid var(--border)}
+.photo-set{margin-top:50px}
+.photo-set .set-heading{padding-bottom:23px;border-bottom:1px solid var(--border)}
+.photo-set .set-heading h3{font-weight:400;font-size:clamp(25px,2.6vw,38px)}
+.photo-set .set-heading>span{font-size:9px;letter-spacing:.18em}
+.set-black .set-collage{padding-top:45px;padding-bottom:40px;gap:25px}
+.card-title{line-height:1.3}
+.dance-verse{padding-block:60px}
+.philosophy.shiva-reflection{padding-block:80px}
+footer{padding-top:65px}
+.footer-main{gap:38px}
+.footer-main .footer-connect{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:25px}
+.footer-connect>p{line-height:1.8;max-width:240px}
+.footer-connect .socials{margin:0;gap:22px}
+.motion-toggle{font-size:10px;padding:10px 15px;opacity:.8}
+@media(min-width:1600px){.cinematic-hero{padding-inline:max(5%,calc((100vw - 1500px)/2));}.hero-scene{min-height:680px}}
+@media(max-width:1050px){
+.cinematic-hero{display:flex;flex-direction:column;padding:45px 6% 25px;text-align:center}
+.cinematic-hero .hero-copy{align-self:center;padding-top:0}
+.cinematic-hero h1{font-size:clamp(60px,10vw,90px)}
+.cinematic-hero h1 em{display:inline}
+.cinematic-hero .hero-subtitle{margin:auto}
+.hero-scene{display:flex;flex-direction:column;gap:0;min-height:0;margin:22px auto 0;max-width:680px}
+.cinematic-hero .hero-art{width:90%;align-self:center;order:0}
+.hero-filmstrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:88%;gap:18px;order:1;margin:5px auto 0;padding:16px 0}
+.hero-frame img{height:auto;aspect-ratio:1;}
+.hero-actions{flex-direction:row;justify-content:center;align-items:center;flex-wrap:wrap;margin:25px 0;gap:12px 25px}
+.cinematic-hero .hero-bottom{margin-top:18px}
+}
+@media(max-width:600px){
+.site-header{height:auto;min-height:82px;padding:18px 5%;gap:16px;flex-wrap:wrap}
+.brand{font-size:10px;letter-spacing:1.5px;gap:10px}.brand-mark{width:34px;height:34px;font-size:20px}.brand small{font-size:6px;letter-spacing:1.2px}
+nav{gap:18px;font-size:10px}.nav-inquire{padding:8px 10px}.nav-inquire span{margin-left:8px}
+.cinematic-hero{padding:35px 5% 22px}.cinematic-hero .eyebrow{font-size:8px;letter-spacing:.2em}
+.cinematic-hero h1{font-size:clamp(48px,12vw,68px);margin:20px 0}.cinematic-hero .hero-subtitle{font-size:10px}
+.hero-scene{margin-top:20px}.cinematic-hero .hero-art{width:100%}
+.hero-filmstrip{width:100%;gap:12px}.hero-frame:nth-child(n){border-radius:42px 42px 3px 3px}.hero-frame img{aspect-ratio:3/4}.hero-frame span{font-size:8px;padding:9px 2px}
+.hero-actions a{font-size:8px;min-height:40px;width:auto;gap:14px}.cinematic-hero .hero-bottom{font-size:8px}.cinematic-hero .hero-bottom>span{display:none}
+.collection{padding:55px 5% 35px}.section-heading h2{font-size:46px}.section-heading>p{font-size:11px}.view-label{display:none}.filters{gap:5px 12px}.filter{font-size:9px}
+.photo-set{margin-top:35px}.photo-set .set-heading{display:flex;flex-direction:column;align-items:flex-start;gap:8px}.photo-set .set-heading h3{text-align:left;margin:0;font-size:28px}
+.dance-verse{padding-block:40px}.philosophy.shiva-reflection{padding-block:50px}.footer-main .footer-connect{flex-direction:column;align-items:flex-start}.footer-connect>p{max-width:none}.footer-connect .socials{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){.hero-frame:nth-child(n){transform:none!important}}
+
+/* Blend residual dark studio edges into the wine stage without altering the photograph. */
+.cinematic-hero .hero-art{mix-blend-mode:lighten;isolation:auto;}
+
+.hero-scene{mix-blend-mode:lighten;}
+
+/* Open portrait mounts with fine opposing corner details. */
+.hero-filmstrip{gap:24px;}
+.hero-frame:nth-child(n){border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;padding:7px 7px 0;}
+.hero-frame::before,.hero-frame::after{content:'';position:absolute;width:25px;height:25px;border-color:var(--accent);border-style:solid;opacity:.65;pointer-events:none;transition:width .3s,height .3s,opacity .3s;}
+.hero-frame::before{top:0;left:0;border-width:1px 0 0 1px;}
+.hero-frame::after{bottom:36px;right:0;border-width:0 1px 1px 0;}
+.hero-frame img,.hero-frame[data-feature="assets/temple.png"] img{height:auto;aspect-ratio:4/5;object-fit:contain;object-position:center;background:#16090d;border-radius:2px;}
+.hero-frame span{font-family:var(--serif);font-size:19px;letter-spacing:.06em;font-weight:400;line-height:1.2;padding:12px 0 3px;color:var(--text);}
+.hero-frame:hover,.hero-frame:focus-visible{box-shadow:none;border:0;background:transparent;}
+.hero-frame:hover::before,.hero-frame:hover::after,.hero-frame:focus-visible::before,.hero-frame:focus-visible::after{width:38px;height:38px;opacity:1;}
+@media(max-width:600px){.hero-filmstrip{gap:12px;}.hero-frame:nth-child(n){padding:5px 5px 0;}.hero-frame span{font-size:16px;padding-top:10px;}.hero-frame::after{bottom:30px;}.hero-frame::before,.hero-frame::after{width:18px;height:18px;}}
+
+/* Three generous, aligned photographs below the main portrait. */
+.hero-scene{display:flex;flex-direction:column;justify-content:center;min-height:0;}
+.cinematic-hero .hero-art{width:100%;max-width:700px;align-self:center;}
+.cinematic-hero>.hero-filmstrip{grid-column:1/-1;grid-row:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:32px;width:min(100%,1040px);max-width:none;margin:48px auto 24px;padding:0;perspective:none;order:3;}
+.cinematic-hero .hero-bottom{grid-row:4;order:4;}
+.hero-frame:nth-child(n){padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:none;transition:translate .3s ease;}
+.hero-frame::before,.hero-frame::after{display:none;}
+.hero-frame img,.hero-frame[data-feature="assets/temple.png"] img{width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;object-position:center;background:#16090d;border-radius:0;}
+.hero-frame span{display:block;width:100%;font-size:25px;letter-spacing:.04em;padding:17px 0 10px;text-align:center;border-bottom:1px solid var(--border);}
+.hero-frame:hover,.hero-frame:focus-visible{translate:0 -4px;}
+@media(max-width:1050px){.cinematic-hero>.hero-filmstrip{width:min(100%,800px);gap:24px;margin-top:20px;}.cinematic-hero .hero-art{width:90%;max-width:620px;}.hero-actions{order:2;}.hero-scene{order:1;}}
+@media(max-width:600px){.cinematic-hero>.hero-filmstrip{grid-template-columns:1fr;width:min(100%,330px);gap:30px;margin-top:20px;}.hero-frame span{font-size:24px;padding:14px 0 10px;}.cinematic-hero .hero-art{width:100%;}}
+@media(prefers-reduced-motion:reduce){.hero-frame:hover,.hero-frame:focus-visible{translate:none;}}
+
+/* A dedicated, spacious section for the three aspects of dance. */
+.cinematic-hero .hero-bottom{grid-row:3;}
+.dance-aspects{padding:100px 6% 110px;background:linear-gradient(180deg,var(--background),#23060d 50%,var(--background));border-bottom:1px solid var(--border);}
+.dance-aspects .hero-filmstrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(35px,5vw,80px);width:100%;max-width:1120px;margin:0 auto;padding:0;perspective:none;align-items:start;}
+.dance-aspects .hero-frame span{padding:22px 0 16px;}
+@media(max-width:850px){.dance-aspects{padding:70px 6% 80px;}.dance-aspects .hero-filmstrip{gap:28px;}}
+@media(max-width:600px){.dance-aspects{padding:60px 7% 70px;}.dance-aspects .hero-filmstrip{grid-template-columns:1fr;max-width:340px;gap:48px;}.dance-aspects .hero-frame span{padding:17px 0 13px;}}
+
+/* Readable supporting typography across screen sizes. */
+.cinematic-hero .eyebrow{font-size:14px;letter-spacing:.16em;font-weight:500;}
+.cinematic-hero .hero-subtitle{font-size:clamp(17px,1.45vw,21px);line-height:1.65;color:var(--text);max-width:28em;}
+.hero-actions{gap:16px;}
+.hero-actions a{font-size:14px;line-height:1.6;letter-spacing:.055em;font-weight:500;min-height:52px;}
+.cinematic-hero .hero-bottom{font-size:12px;line-height:1.6;letter-spacing:.09em;}
+.site-header nav{font-size:14px;}
+.brand{font-size:13px;}.brand small{font-size:9px;line-height:1.6;}
+.section-heading>p{font-size:16px;line-height:1.8;}
+.collection .filter{font-size:13px;line-height:1.6;}
+.photo-set .set-heading>span,.view-label{font-size:12px;letter-spacing:.12em;}
+.card-category,.set-collage .card-category{font-size:11px;line-height:1.7;letter-spacing:.06em;}
+.footer-connect>p,.socials{font-size:14px;line-height:1.8;}
+.booking{font-size:13px;line-height:1.6;}
+.footer-bottom{font-size:12px;line-height:1.8;}
+.motion-toggle{font-size:12px;opacity:1;}
+@media(max-width:600px){
+.cinematic-hero .eyebrow{font-size:12px;letter-spacing:.13em;}
+.cinematic-hero .hero-subtitle{font-size:17px;}
+.hero-actions{flex-direction:column;width:100%;align-items:center;gap:12px;}
+.hero-actions a{font-size:12px;letter-spacing:.035em;min-height:48px;max-width:100%;white-space:normal;}
+.cinematic-hero .hero-bottom{font-size:11px;}
+.site-header{justify-content:center;gap:14px;}.site-header nav{font-size:13px;gap:22px;}.brand{font-size:12px;}.brand small{font-size:8px;}
+.section-heading>p{font-size:15px;}.collection .filter{font-size:12px;}.footer-bottom{font-size:11px;gap:16px;}
+}
+
+/* Prominent classical-dance introduction in the hero. */
+.cinematic-hero .hero-copy>.eyebrow{font-family:var(--serif);font-size:clamp(26px,2.5vw,40px);font-weight:500;letter-spacing:.065em;line-height:1.25;color:var(--accent);max-width:17em;text-wrap:balance;padding-bottom:20px;}
+.cinematic-hero .hero-copy>.eyebrow::after{content:'';display:block;width:76px;height:1px;margin-top:20px;background:linear-gradient(90deg,var(--accent),transparent);}
+@media(max-width:1050px){.cinematic-hero .hero-copy>.eyebrow{margin-inline:auto;}.cinematic-hero .hero-copy>.eyebrow::after{margin-inline:auto;background:linear-gradient(90deg,transparent,var(--accent),transparent);}}
+@media(max-width:600px){.cinematic-hero .hero-copy>.eyebrow{font-size:27px;letter-spacing:.04em;padding-bottom:10px;}.cinematic-hero .hero-copy>.eyebrow::after{margin-top:16px;}}
+
+/* Keep the complete peacock portrait within its gallery frame. */
+.curved-collection .set-collage>.gallery-card .photo-wrap img[src^="assets/peacock-fan.jpeg"]{object-fit:contain;object-position:center;transform:none;scale:1;}
+
+/* Stronger, more readable hero supporting text and calls to action. */
+.cinematic-hero .hero-copy>.eyebrow{font-size:clamp(30px,2.8vw,44px);line-height:1.25;letter-spacing:.035em;color:var(--accent);}
+.cinematic-hero .hero-subtitle{font-family:var(--serif);font-size:clamp(27px,2.3vw,35px);font-weight:500;line-height:1.35;color:var(--text);max-width:21em;}
+.cinematic-hero .hero-actions{gap:16px;width:100%;}
+.cinematic-hero .hero-actions a{font-size:17px;font-weight:600;letter-spacing:.025em;line-height:1.5;padding:18px 22px;border:1px solid var(--accent);min-height:62px;border-radius:3px;width:100%;max-width:420px;white-space:normal;}
+.cinematic-hero .hero-actions a:first-child{background:var(--accent);color:var(--background);}
+.cinematic-hero .hero-actions a:last-child{background:transparent;color:var(--text);}
+.cinematic-hero .hero-actions a:hover{background:var(--text);color:var(--background);}
+@media(max-width:1050px){.cinematic-hero .hero-actions{flex-direction:column;align-items:center;}}
+@media(max-width:600px){.cinematic-hero .hero-copy>.eyebrow{font-size:29px;}.cinematic-hero .hero-subtitle{font-size:26px;}.cinematic-hero .hero-actions a{font-size:15px;padding:16px;min-height:58px;gap:12px;}}
+
+/* Show the complete replacement portrait within its frame. */
+.curved-collection .set-collage>.gallery-card .photo-wrap img[src^="assets/stage-shadow.png"]{object-fit:contain;object-position:center;transform:none;scale:1;}
+
+/* Calm, consistent viewer for Collection 02; no enlargement controls. */
+.lightbox.collection-viewer{width:min(640px,calc(100vw - 32px));max-width:640px;height:auto;max-height:90dvh;margin:auto;padding:22px;border:1px solid var(--border);border-radius:8px;background:var(--background);overflow:auto;}
+.lightbox.collection-viewer[open]{animation:none;gap:8px;}
+.collection-viewer .viewer{flex:none;height:clamp(180px,46dvh,400px);min-height:0;padding:10px 0;gap:12px;}
+.collection-viewer .image-stage{height:100%;overflow:hidden;}
+.collection-viewer .full-image{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;transform:none;animation:none;}
+.collection-viewer .zoom-button,.collection-viewer #photo-source{display:none;}
+.collection-viewer .lightbox-top{font-size:10px;letter-spacing:.1em;}
+.collection-viewer .lightbox-bottom{padding:8px 0;align-items:start;}
+.collection-viewer .lightbox-bottom h2{font-size:28px;line-height:1.2;}
+.collection-viewer #lightbox-detail{font-size:12px;line-height:1.6;max-width:38em;}
+.collection-viewer .viewer-tools small{display:none;}
+.collection-viewer .image-counter{font-size:12px;white-space:nowrap;}
+@media(max-width:600px){.lightbox.collection-viewer{padding:16px;width:calc(100vw - 24px);}.collection-viewer .viewer{gap:4px;}.collection-viewer .lightbox-bottom h2{font-size:24px;}.collection-viewer .lightbox-top{font-size:8px;}}
+
+/* A consistent fine-art mount for opened Collection 02 photographs. */
+.collection-viewer .image-stage{box-sizing:border-box;min-width:0;min-height:0;width:100%;height:100%;padding:12px;border:1px solid var(--accent);border-radius:3px;background:#100609;box-shadow:inset 0 0 0 5px var(--background);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.collection-viewer .image-stage .full-image{display:block;flex:0 1 auto;min-width:0;min-height:0;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center;transform:none;scale:1;}
+.collection-viewer .image-stage .full-image[hidden]{display:none;}
+@media(max-width:600px){.collection-viewer .image-stage{padding:8px;box-shadow:inset 0 0 0 3px var(--background);}}
+
+/* Expressions in Stillness: quiet resting portraits, gentle hover emphasis. */
+.set-black .set-collage>.gallery-card:nth-child(n){animation:none;transform:none;translate:none;transition:transform .55s cubic-bezier(.22,1,.36,1);}
+.set-black .set-collage>.gallery-card:nth-child(n) .photo-wrap{filter:drop-shadow(0 0 0 transparent);transition:filter .55s ease;}
+.set-black .set-collage .card-title{transition:color .35s ease;}
+.set-black .set-collage .overlay{display:none;}
+@media(hover:hover) and (pointer:fine){
+.set-black .set-collage>.gallery-card:nth-child(n):hover{transform:translateY(-8px);}
+.set-black .set-collage>.gallery-card:nth-child(n):hover .photo-wrap{filter:drop-shadow(0 8px 14px rgb(224 180 164 / 22%));}
+.set-black .set-collage>.gallery-card:hover .card-title{color:var(--accent);}
+}
+.motion-paused .set-black .set-collage>.gallery-card:nth-child(n),.motion-paused .set-black .set-collage>.gallery-card:nth-child(n) .photo-wrap{transition:none;transform:none;filter:none;}
+@media(prefers-reduced-motion:reduce){.set-black .set-collage>.gallery-card:nth-child(n),.set-black .set-collage>.gallery-card:nth-child(n) .photo-wrap{transition:none;transform:none;filter:none;}}
+
+/* Collection 01: temple-arch mounts with uncropped photographs. */
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap,
+.set-black .set-collage > .gallery-card:nth-child(n):hover .photo-wrap,
+.set-black .set-collage > .gallery-card:nth-child(n):focus-visible .photo-wrap,
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap:has(img[src^="assets/offering.png"]){
+  box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  aspect-ratio:3 / 4;width:100%;height:auto;padding:20% 8% 7%;
+  border:1px solid rgb(224 180 164 / 60%);
+  border-radius:50% 50% 12px 12px / 26% 26% 12px 12px;
+  clip-path:none;overflow:hidden;background:#080506;
+  box-shadow:inset 0 0 0 6px #180307,inset 0 0 0 7px rgb(224 180 164 / 18%);
+}
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap img,
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap img[src^="assets/offering.png"]{
+  display:block;position:static;flex:0 1 auto;min-width:0;min-height:0;
+  width:100%;height:100%;object-fit:contain;object-position:center;
+  border-radius:0;clip-path:none;transform:none;scale:1;translate:none;
+}
+
+/* Give these three complete portraits more space inside their arch mounts. */
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap:has(img:is([src^="assets/offering.png"],[src^="assets/crimson-portrait.png"],[src^="assets/pointing-gesture.png"])){
+  padding:10% 4% 4%;
+}
+
+/* Bring the gesture portrait closer while preserving the full dance pose. */
+.set-black .set-collage > .gallery-card:nth-child(n) .photo-wrap img[src^="assets/pointing-gesture.png"]{
+  transform:translate(11%, -2%) scale(1.5);transform-origin:50% 50%;
+}
+
+/* An intimate recital: editorial typography and a luminous circular stage. */
+.cinematic-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);grid-template-rows:1fr auto auto;min-height:720px;padding:64px max(6%,calc((100vw - 1400px)/2)) 26px;gap:0 40px;background:radial-gradient(ellipse at 78% 45%,#40101b 0%,#23060d 35%,#180307 70%);}
+.cinematic-hero .hero-copy{grid-column:1;grid-row:1;align-self:end;padding:0;position:relative;z-index:2;}
+.cinematic-hero .hero-copy>.eyebrow{font-family:var(--serif);font-size:clamp(24px,2.1vw,34px);font-weight:400;line-height:1.3;letter-spacing:.08em;max-width:16em;margin:0 0 30px;padding:0;color:var(--accent);}
+.cinematic-hero .hero-copy>.eyebrow::after{display:none;}
+.cinematic-hero h1{font-family:var(--serif);font-size:clamp(80px,8.8vw,140px);font-weight:400;line-height:.83;letter-spacing:-.055em;margin:0 0 30px;}
+.cinematic-hero h1 em{display:block;margin-left:.45em;margin-top:.08em;font-weight:400;}
+.cinematic-hero .hero-subtitle{font-family:var(--serif);font-size:clamp(22px,2vw,29px);line-height:1.4;max-width:16em;margin:0;color:var(--text);}
+.cinematic-hero .hero-scene{position:relative;isolation:isolate;grid-column:2;grid-row:1 / 3;align-self:center;display:flex;justify-content:center;align-items:center;width:100%;min-height:510px;margin:0;mix-blend-mode:normal;}
+.cinematic-hero .hero-scene::before{content:'';position:absolute;z-index:-1;width:84%;aspect-ratio:1;top:5%;left:12%;border:1px solid #e0b4a440;border-radius:50%;background:radial-gradient(circle,#6c29333b,transparent 68%);box-shadow:0 0 0 17px #e0b4a405,0 0 0 18px #e0b4a414;}
+.cinematic-hero .hero-art{position:relative;width:115%;max-width:760px;flex:none;align-self:center;margin-left:-14%;mix-blend-mode:lighten;}
+.cinematic-hero .hero-side-note{display:block;position:absolute;bottom:0;left:0;width:100%;text-align:center;font-size:11px;letter-spacing:.23em;color:var(--accent);}
+.cinematic-hero .hero-actions{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:30px 0 45px;width:100%;}
+.cinematic-hero .hero-actions a{width:auto;max-width:100%;min-height:52px;padding:15px 24px;border-radius:40px;font-size:12px;letter-spacing:.07em;font-weight:500;gap:28px;line-height:1.4;}
+.cinematic-hero .hero-actions a:last-child{border:0;border-radius:0;padding:10px 0;min-height:40px;background:transparent;}
+.cinematic-hero .hero-actions a:last-child:hover{color:var(--accent);}
+.cinematic-hero .hero-bottom{grid-column:1/-1;grid-row:3;font-size:10px;letter-spacing:.16em;margin:30px 0 0;padding-top:20px;}
+@media(max-width:900px){
+.cinematic-hero{display:flex;flex-direction:column;min-height:0;padding:48px 6% 24px;gap:0;text-align:center;}
+.cinematic-hero .hero-copy{align-self:center;}
+.cinematic-hero .hero-copy>.eyebrow{font-size:24px;margin:0 auto 24px;max-width:18em;}
+.cinematic-hero h1{font-size:clamp(70px,12vw,110px);margin-bottom:22px;}
+.cinematic-hero h1 em{display:inline;margin:0;}
+.cinematic-hero .hero-subtitle{font-size:23px;max-width:22em;margin:auto;}
+.cinematic-hero .hero-scene{order:1;max-width:570px;min-height:0;margin:26px auto 0;padding-bottom:28px;}
+.cinematic-hero .hero-art{width:110%;margin-left:-14%;}
+.cinematic-hero .hero-actions{order:2;align-items:center;margin:24px 0 12px;gap:8px;}
+.cinematic-hero .hero-bottom{order:3;margin-top:20px;}
+}
+@media(max-width:480px){
+.cinematic-hero{padding-top:34px;}
+.cinematic-hero .hero-copy>.eyebrow{font-size:22px;letter-spacing:.045em;max-width:14em;}
+.cinematic-hero h1{font-size:78px;line-height:.9;}
+.cinematic-hero h1 em{display:block;margin-left:0;}
+.cinematic-hero .hero-subtitle{font-size:22px;max-width:14em;}
+.cinematic-hero .hero-side-note{font-size:9px;letter-spacing:.16em;}
+.cinematic-hero .hero-actions a{font-size:11px;padding:14px 22px;}
+}
+
+/* Merge the portrait's dark studio edges with the burgundy stage. */
+.cinematic-hero .hero-scene{mix-blend-mode:lighten;}
+.cinematic-hero .hero-side-note{bottom:-18px;}
+@media(max-width:900px){.cinematic-hero .hero-side-note{bottom:0;}}
+
+/* Flame-ring backdrop, extracted from the supplied Nataraja reference. */
+.cinematic-hero .hero-scene::before{
+  width:100%;top:0;left:3%;border:0;border-radius:0;box-shadow:none;
+  background:url('assets/flame-ring.png') center / contain no-repeat;opacity:.24;
+}
+
+/* True transparent portrait: preserve clothing without silhouette clipping or blending. */
+.cinematic-hero .hero-art,.cinematic-hero .hero-scene{mix-blend-mode:normal;}
+.cinematic-hero .arch>img{clip-path:none;mix-blend-mode:normal;filter:none;object-fit:contain;}

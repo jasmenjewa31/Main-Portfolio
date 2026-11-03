@@ -54,10 +54,7 @@ function animateScene(time) {
         card.style.setProperty('--pointer-y', state.y.toFixed(2) + 'deg');
       });
     }
-    if (innerWidth > 700) document.querySelectorAll('.set-black .set-collage .gallery-card').forEach((card, index) => {
-      const rect = card.getBoundingClientRect();
-      if (rect.top < innerHeight && rect.bottom > 0) card.style.setProperty('--parallax', `${Math.max(-16, Math.min(16, (innerHeight / 2 - rect.top) * (index % 2 ? .025 : -.025)))}px`);
-    });
+
   }
   requestAnimationFrame(animateScene);
 }
