@@ -21,6 +21,7 @@ featuredCards.forEach((card,index) => {
 
 function syncMotion() {
   document.body.classList.toggle('motion-paused', motionPaused);
+  document.body.classList.toggle('ambient-motion-opt-in', reducedMotion.matches && !motionPaused);
   motionButton.textContent = motionPaused ? 'Play motion' : 'Pause motion';
   motionButton.setAttribute('aria-pressed', String(motionPaused));
   if (motionPaused) {

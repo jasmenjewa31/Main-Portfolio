@@ -392,3 +392,27 @@ body{isolation:isolate;}
     animation:selected-frame-arrival 1.1s cubic-bezier(.22,1,.36,1) both;
   }
 }
+
+/* A narrower pool of light makes its drift visible on a phone. */
+@keyframes mobile-ambient-drift {
+  from { transform: translate3d(-9%, -3%, 0); }
+  to   { transform: translate3d(12%, 6%, 0); }
+}
+@media (max-width: 700px) {
+  .motion-zone > .site-atmosphere::before {
+    --ambient-drift: mobile-ambient-drift 10s ease-in-out -4s infinite alternate;
+    background: radial-gradient(ellipse at 28% 36%, rgb(166 65 84 / 34%), transparent 46%),
+                radial-gradient(ellipse at 80% 69%, rgb(224 180 164 / 15%), transparent 38%);
+    animation: var(--ambient-drift);
+  }
+}
+
+/* An explicit tap on Play enables just the ambient effects under Reduce Motion. */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-motion-opt-in .motion-zone > .site-atmosphere::before {
+    animation: var(--ambient-drift, site-light-flow 14s ease-in-out infinite alternate) !important;
+  }
+  .ambient-motion-opt-in .cinematic-hero .hero-scene::before {
+    animation: flame-ring-orbit 100s linear infinite !important;
+  }
+}
