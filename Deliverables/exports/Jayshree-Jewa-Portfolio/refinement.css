@@ -267,9 +267,128 @@ nav{gap:18px;font-size:10px}.nav-inquire{padding:8px 10px}.nav-inquire span{marg
 /* Flame-ring backdrop, extracted from the supplied Nataraja reference. */
 .cinematic-hero .hero-scene::before{
   width:100%;top:0;left:3%;border:0;border-radius:0;box-shadow:none;
-  background:url('assets/flame-ring.png') center / contain no-repeat;opacity:.24;
+  background:url('assets/flame-ring.png?v=complete-25') center / contain no-repeat;opacity:.24;
 }
 
 /* True transparent portrait: preserve clothing without silhouette clipping or blending. */
 .cinematic-hero .hero-art,.cinematic-hero .hero-scene{mix-blend-mode:normal;}
 .cinematic-hero .arch>img{clip-path:none;mix-blend-mode:normal;filter:none;object-fit:contain;}
+
+/* Slow ceremonial ring rotation and drifting ambient light. */
+.cinematic-hero .hero-scene::before{transform-origin:50% 50%;animation:flame-ring-orbit 100s linear infinite;}
+.cinematic-hero::after{content:'';position:absolute;inset:-15%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 25% 35%,rgb(119 38 57 / 24%),transparent 42%),radial-gradient(ellipse at 75% 65%,rgb(224 180 164 / 9%),transparent 38%);animation:hero-light-drift 18s ease-in-out infinite alternate;}
+@keyframes flame-ring-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes hero-light-drift{from{transform:translate(-3%,-2%) scale(1);opacity:.55}to{transform:translate(4%,3%) scale(1.08);opacity:1}}
+.motion-paused .cinematic-hero::after,.motion-paused .cinematic-hero .hero-scene::before{animation-play-state:paused;}
+@media(prefers-reduced-motion:reduce){.cinematic-hero::after,.cinematic-hero .hero-scene::before{animation:none;}}
+
+/* Align the dancer's upper body with the centre of the flame halo. */
+.cinematic-hero .hero-art{margin-left:0;}
+
+.curved-collection .set-collage>.gallery-card .photo-wrap img[src^="assets/peacock-reverie.png"]{object-fit:contain;object-position:center;transform:none;scale:1;}
+
+/* A soft entrance for clicked photographs; no image scaling or cropping. */
+.lightbox.collection-viewer[open]{animation:photo-viewer-enter .42s cubic-bezier(.22,1,.36,1) both;}
+.lightbox.collection-viewer[open]::backdrop{animation:photo-backdrop-enter .35s ease both;}
+@keyframes photo-viewer-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes photo-backdrop-enter{from{opacity:0}to{opacity:1}}
+.motion-paused .lightbox.collection-viewer[open],.motion-paused .lightbox.collection-viewer[open]::backdrop{animation:none;}
+@media(prefers-reduced-motion:reduce){.lightbox.collection-viewer[open],.lightbox.collection-viewer[open]::backdrop{animation:none;}}
+
+/* A gentle spring entrance for the photo window. */
+.lightbox.collection-viewer[open]{animation:photo-popup .55s cubic-bezier(.22,1,.36,1) both;transform-origin:center;box-shadow:0 24px 90px #0009,0 0 32px rgb(224 180 164 / 12%);}
+@keyframes photo-popup{0%{opacity:0;transform:translateY(32px) scale(.96)}70%{opacity:1;transform:translateY(-5px) scale(1)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.motion-paused .lightbox.collection-viewer[open]{animation:none;}
+@media(prefers-reduced-motion:reduce){.lightbox.collection-viewer[open]{animation:none;}}
+
+/* Shared ambient background across the gallery, art and contact sections. */
+body{isolation:isolate;}
+.site-atmosphere{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:var(--background);}
+.site-atmosphere::before{content:'';position:absolute;inset:-25%;background:radial-gradient(ellipse at 25% 35%,rgb(111 27 48 / 33%),transparent 46%),radial-gradient(ellipse at 75% 70%,rgb(224 180 164 / 9%),transparent 38%);animation:site-glow-drift 26s ease-in-out infinite alternate;}
+.site-atmosphere i{position:absolute;left:var(--x);top:var(--y);width:var(--size);height:var(--size);border-radius:50%;background:#e0b4a4;opacity:.22;box-shadow:0 0 7px #e0b4a433;animation:site-particle-drift var(--duration) ease-in-out var(--delay) infinite alternate;}
+.collection,.dance-aspects,.philosophy.shiva-reflection,footer{background:transparent;}
+@keyframes site-glow-drift{from{transform:translate(-4%,-3%) scale(1);opacity:.65}to{transform:translate(5%,4%) scale(1.12);opacity:1}}
+@keyframes site-particle-drift{0%{transform:translate3d(0,24px,0);opacity:.12}50%{opacity:.38}100%{transform:translate3d(22px,-65px,0);opacity:.18}}
+.motion-paused .site-atmosphere::before,.motion-paused .site-atmosphere i{animation-play-state:paused;}
+@media(max-width:600px){.site-atmosphere i:nth-child(n+15){display:none;}}
+@media(prefers-reduced-motion:reduce){.site-atmosphere::before,.site-atmosphere i{animation:none;}.site-atmosphere i{opacity:.16;}}
+
+/* Quiet, continuous atmosphere across the site. */
+.ambient-section{position:relative;isolation:isolate;}
+.site-atmosphere{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:inherit;contain:paint;}
+.site-atmosphere::before{content:'';position:absolute;inset:-15%;background:radial-gradient(ellipse at 12% 28%,rgb(143 55 73 / 16%),transparent 48%),radial-gradient(ellipse at 86% 75%,rgb(224 180 164 / 10%),transparent 44%);animation:site-light-flow 24s ease-in-out infinite alternate;}
+.site-atmosphere::after{content:'';position:absolute;inset:-90px -30px;background-image:radial-gradient(circle at 30px 40px,#e0b4a45c 1px,transparent 2px),radial-gradient(circle at 160px 120px,#e0b4a438 1px,transparent 2px),radial-gradient(circle at 80px 190px,#e0b4a42b 1px,transparent 2px);background-size:330px 290px,470px 390px,610px 430px;animation:site-dust-drift 32s ease-in-out infinite alternate;opacity:.5;}
+.dance-aspects .site-atmosphere::before,.philosophy .site-atmosphere::before{animation-delay:-12s;}
+.collection .site-atmosphere::after,footer .site-atmosphere::after{animation-delay:-16s;}
+@keyframes site-light-flow{from{transform:translate(-3%,-2%) scale(1);opacity:.55}to{transform:translate(4%,3%) scale(1.08);opacity:1}}
+@keyframes site-dust-drift{from{transform:translate(0,35px);opacity:.3}to{transform:translate(20px,-35px);opacity:.65}}
+.motion-paused .site-atmosphere::before,.motion-paused .site-atmosphere::after{animation-play-state:paused;}
+@media(prefers-reduced-motion:reduce){.site-atmosphere::before,.site-atmosphere::after{animation:none;}}
+@media(max-width:600px){.site-atmosphere::after{opacity:.35;background-size:400px 350px,550px 430px,700px 500px;}}
+
+/* Lift the entire frame, including its caption, independently of carousel rotation. */
+.curved-collection .set-collage{height:540px;}
+.curved-collection .set-collage>.gallery-card:nth-child(n){top:75px;overflow:visible;translate:0 0;scale:1;transition:transform 1s cubic-bezier(.22,1,.36,1),opacity .7s,translate .45s cubic-bezier(.2,.8,.25,1.15),scale .45s cubic-bezier(.2,.8,.25,1.15);}
+.curved-collection .set-collage>.gallery-card .photo-wrap{transform:none;transition:box-shadow .35s,border-color .35s;border:1px solid var(--border);}
+@media(hover:hover) and (pointer:fine){
+.curved-collection .set-collage>.gallery-card:hover{translate:0 -26px;scale:1.09;z-index:20!important;}
+.curved-collection .set-collage>.gallery-card:hover .photo-wrap{transform:none;border-color:var(--accent);box-shadow:0 26px 40px #000a,0 0 0 2px rgb(224 180 164 / 40%),0 0 30px rgb(224 180 164 / 28%);}
+}
+.curved-collection .set-collage>.gallery-card:focus-visible{translate:0 -26px;scale:1.09;z-index:20!important;outline:none;}
+.curved-collection .set-collage>.gallery-card:focus-visible .photo-wrap{border-color:var(--accent);box-shadow:0 26px 40px #000a,0 0 0 3px var(--accent);}
+.curved-collection .set-collage>.gallery-card:active{translate:0 -10px;scale:1.03;}
+@media(max-width:700px){.curved-collection .set-collage{height:450px;}.curved-collection .set-collage>.gallery-card:nth-child(n){top:65px;}}
+.lightbox.collection-viewer[open]{animation:photo-popup .65s cubic-bezier(.22,1,.36,1) both;}
+@keyframes photo-popup{0%{opacity:0;transform:translateY(55px) scale(.84)}65%{opacity:1;transform:translateY(-8px) scale(1.015)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.motion-paused .curved-collection .set-collage>.gallery-card:nth-child(n){translate:none;scale:1;transition:none;}
+.motion-paused .lightbox.collection-viewer[open]{animation:none;}
+@media(prefers-reduced-motion:reduce){.curved-collection .set-collage>.gallery-card:nth-child(n){translate:none;scale:1;transition:none;}.lightbox.collection-viewer[open]{animation:none;}}
+
+/* Continuous movement in each section, with readable stationary text after arrival. */
+.motion-zone>.site-atmosphere{background:transparent;}
+.section-light-ribbon{position:absolute;left:-35%;top:15%;width:110%;height:65%;border-radius:50%;border:1px solid rgb(224 180 164 / 16%);background:radial-gradient(ellipse,transparent 45%,rgb(174 62 86 / 12%) 65%,transparent 72%);animation:section-ribbon-flow 14s ease-in-out var(--flow-delay,0s) infinite alternate;}
+.motion-zone>.site-atmosphere::before{animation-duration:14s;}
+.motion-zone>.site-atmosphere::after{animation-duration:18s;}
+@keyframes section-ribbon-flow{from{transform:translate(-8%,-7%) rotate(-18deg);opacity:.35}to{transform:translate(36%,20%) rotate(20deg);opacity:.9}}
+.section-entrance{opacity:.2;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1);}
+.section-entrance.section-arrived{opacity:1;transform:none;}
+.dance-aspects .hero-frame.section-float,.set-black .set-collage>.gallery-card.section-float:nth-child(n),.shiva-artwork.section-float{animation:section-photo-float 6s ease-in-out var(--float-delay,0s) infinite;}
+@keyframes section-photo-float{0%,100%{translate:0 6px}50%{translate:0 -8px}}
+.dance-aspects .hero-frame.section-float:is(:hover,:focus-visible),.set-black .gallery-card.section-float:hover{animation-play-state:paused;}
+.section-float:not(.motion-in-view),.motion-zone:not(.motion-in-view)>.site-atmosphere *,.motion-zone:not(.motion-in-view)>.site-atmosphere::before,.motion-zone:not(.motion-in-view)>.site-atmosphere::after{animation-play-state:paused!important;}
+.motion-paused .section-entrance{opacity:1;transform:none;transition:none;}
+@media(prefers-reduced-motion:reduce){.section-entrance{opacity:1;transform:none;transition:none;}.section-float{translate:none!important;}.section-light-ribbon{animation:none;opacity:.25;}}
+
+/* Collection 02: every complete picture frame springs forward on interaction. */
+@keyframes collection-frame-pop {
+  0% { translate:0 0; scale:1; }
+  65% { translate:0 -30px; scale:1.085; }
+  100% { translate:0 -22px; scale:1.06; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  body:not(.motion-paused) .curved-collection .set-collage>.gallery-card:nth-child(n):focus-visible {
+    animation:collection-frame-pop .55s cubic-bezier(.22,1,.36,1) both;
+  }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  body:not(.motion-paused) .curved-collection .set-collage>.gallery-card:nth-child(n):hover {
+    animation:collection-frame-pop .55s cubic-bezier(.22,1,.36,1) both;
+  }
+}
+.curved-collection .set-collage>.gallery-card:nth-child(n).offstage { opacity:0; pointer-events:none; }
+
+/* A rose-gold frame flourish accompanies each slide into the centre. */
+.curved-collection .set-collage>.gallery-card.centre-card .photo-wrap {
+  border-color:var(--accent);
+  box-shadow:0 16px 38px #0008,0 0 0 1px rgb(224 180 164 / 25%),0 0 24px rgb(224 180 164 / 16%);
+}
+@keyframes selected-frame-arrival {
+  0% { translate:0 0; box-shadow:0 4px 12px #0004; }
+  55% { translate:0 -12px; box-shadow:0 24px 42px #0009,0 0 0 2px rgb(224 180 164 / 60%),0 0 36px rgb(224 180 164 / 32%); }
+  100% { translate:0 0; box-shadow:0 16px 38px #0008,0 0 0 1px rgb(224 180 164 / 25%),0 0 24px rgb(224 180 164 / 16%); }
+}
+@media(prefers-reduced-motion:no-preference) {
+  body:not(.motion-paused) .curved-collection .set-collage>.gallery-card.centre-card .photo-wrap {
+    animation:selected-frame-arrival 1.1s cubic-bezier(.22,1,.36,1) both;
+  }
+}

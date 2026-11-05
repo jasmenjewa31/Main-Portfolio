@@ -96,3 +96,56 @@ filters.addEventListener('click', () => requestAnimationFrame(updateFilterPill))
 new ResizeObserver(updateFilterPill).observe(filters);
 document.fonts.ready.then(updateFilterPill);
 updateFilterPill();
+
+// Ambient layers stay behind the content of every main site section.
+document.querySelectorAll('.cinematic-hero,.dance-aspects,.collection,.philosophy,footer').forEach(section=>{
+  section.classList.add('ambient-section');
+  const atmosphere=document.createElement('div');
+  atmosphere.className='site-atmosphere';
+  atmosphere.setAttribute('aria-hidden','true');
+  section.prepend(atmosphere);
+});
+
+// Section choreography: decoration never intercepts clicks or changes image crops.
+const sectionMotionObserver = new IntersectionObserver(entries => {
+  entries.forEach(({target,isIntersecting}) => target.classList.toggle('motion-in-view',isIntersecting));
+}, {rootMargin:'60px'});
+const entranceObserver = new IntersectionObserver(entries => {
+  entries.forEach(({target,isIntersecting}) => {
+    if (!isIntersecting) return;
+    target.classList.add('section-arrived');
+    entranceObserver.unobserve(target);
+  });
+}, {threshold:.12});
+function prepareSectionMotion() {
+  document.querySelectorAll('.ambient-section,.photo-set').forEach((section,index) => {
+    if(section.dataset.motionReady) return;
+    section.dataset.motionReady='true';
+    section.classList.add('motion-zone');
+    sectionMotionObserver.observe(section);
+    let atmosphere=section.querySelector(':scope > .site-atmosphere');
+    if(!atmosphere){
+      section.classList.add('ambient-section');
+      atmosphere=document.createElement('div');atmosphere.className='site-atmosphere';
+      atmosphere.setAttribute('aria-hidden','true');section.prepend(atmosphere);
+    }
+    const ribbon=document.createElement('b');ribbon.className='section-light-ribbon';
+    ribbon.style.setProperty('--flow-delay',(-index*3)+'s');atmosphere.append(ribbon);
+    for(let i=0;i<7;i++){
+      const dot=document.createElement('i');
+      dot.style.cssText='--x:'+((i*17+index*9)%96)+'%;--y:'+((i*29+18)%94)+'%;--size:3px;--duration:'+(10+i*2)+'s;--delay:'+(-i*2)+'s';
+      atmosphere.append(dot);
+    }
+  });
+  document.querySelectorAll('.hero-copy,.hero-actions,.section-heading,.set-heading,.dance-verse,.shiva-copy,.footer-connect,.footer-artwork').forEach(el=>{
+    if(el.classList.contains('section-entrance'))return;
+    el.classList.add('section-entrance');entranceObserver.observe(el);
+  });
+  document.querySelectorAll('.dance-aspects .hero-frame,.set-black .gallery-card,.shiva-artwork').forEach((el,index)=>{
+    if(el.classList.contains('section-float'))return;
+    el.classList.add('section-float');el.style.setProperty('--float-delay',(-index*1.3)+'s');
+    sectionMotionObserver.observe(el);
+  });
+}
+prepareSectionMotion();
+new MutationObserver(prepareSectionMotion).observe(grid,{childList:true});

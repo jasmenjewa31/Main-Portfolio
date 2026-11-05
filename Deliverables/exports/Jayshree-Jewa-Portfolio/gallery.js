@@ -4,6 +4,16 @@ const CONTACT = { email: '', instagram: '', youtube: '' };
 // Curatorial labels and sample repertoire are illustrative, not claims about the pictured performances.
 const photos = [
   {
+  "id": "assets/peacock-reverie.png",
+  "title": "A feathered reverie",
+  "category": "Portraits",
+  "detail": "Bharatanatyam",
+  "caption": "A seated dance pose framed by peacock feathers and warm golden light.",
+  "credit": "Provided for this portfolio",
+  "ratio": "1 / 1",
+  "alt": "Dancer in teal, blue and gold seated before a peacock-feather fan in warm golden light."
+},
+  {
     "id": "assets/blue-portrait.jpg",
     "title": "A quiet glance",
     "category": "Abhinaya",
@@ -27,11 +37,11 @@ const photos = [
     "id": "assets/stage-peacock.jpeg",
     "title": "In the spotlight",
     "category": "On Stage",
-    "detail": "Bharatanatyam · Selected collection",
-    "caption": "A stage moment with a peacock-feather headdress.",
+    "detail": "Bharatanatyam",
+    "caption": "A stage moment as the charming Krishna.",
     "credit": "Provided for this portfolio",
     "ratio": "854 / 1280",
-    "alt": "A stage moment with a peacock-feather headdress."
+    "alt": "A stage moment as the charming Krishna."
   },
   {
     "id": "assets/warm-portrait.png",
@@ -57,17 +67,17 @@ const photos = [
     "id": "assets/stage-shadow.png",
     "title": "Rhythm and shadow",
     "category": "On Stage",
-    "detail": "Bharatanatyam · Selected collection",
-    "caption": "A seated Bharatanatyam pose in red and gold beneath the shadow of Nataraja.",
+    "detail": "",
+    "caption": "Seated in a Devi pose beneath the shadow of Durga.",
     "credit": "Provided for this portfolio",
     "ratio": "1086 / 1448",
-    "alt": "A seated Bharatanatyam pose in red and gold beneath the shadow of Nataraja."
+    "alt": "Seated in a Devi pose beneath the shadow of Durga."
   },
   {
     "id": "assets/temple.png",
     "title": "Temple reverie",
     "category": "Portraits",
-    "detail": "Bharatanatyam · Selected collection",
+    "detail": "Bharatanatyam",
     "caption": "A seated portrait framed by Nataraja and warm lamplight.",
     "credit": "Provided for this portfolio",
     "ratio": "1086 / 1448",
@@ -77,27 +87,17 @@ const photos = [
     "id": "assets/golden-lines.jpg",
     "title": "Lines of grace",
     "category": "Mudras & Details",
-    "detail": "Bharatanatyam · Selected collection",
+    "detail": "Bharatanatyam",
     "caption": "A full-length gesture in red, green, and gold.",
     "credit": "Provided for this portfolio",
     "ratio": "1305 / 1920",
     "alt": "A full-length gesture in red, green, and gold."
   },
   {
-    "id": "assets/peacock-fan.jpeg",
-    "title": "A fan of colour",
-    "category": "On Stage",
-    "detail": "Bharatanatyam · Selected collection",
-    "caption": "A seated dance pose against a fan of peacock feathers.",
-    "credit": "Provided for this portfolio",
-    "ratio": "960 / 1280",
-    "alt": "A seated dance pose against a fan of peacock feathers."
-  },
-  {
     "id": "assets/golden-expression.png",
     "title": "A world within",
     "category": "Abhinaya",
-    "detail": "Bharatanatyam · Selected collection",
+    "detail": "Bharatanatyam",
     "caption": "A playful expression surrounded by golden light.",
     "credit": "Provided for this portfolio",
     "ratio": "1054 / 1493",
@@ -165,9 +165,11 @@ function renderGallery(){
     {id:'colour',label:'An Ode to Tradition',title:'A world of colour.',note:'Movement, framed in light.',number:'02'}
   ];
   const blackDisplayOrder = ["assets/offering.png","assets/blue-portrait.jpg","assets/crimson-portrait.png","assets/gesture.png","assets/pointing-gesture.png","assets/warm-portrait.png"];
+  const colourDisplayOrder = ['assets/peacock-reverie.png','assets/stage-shadow.png','assets/stage-peacock.jpeg','assets/golden-lines.jpg','assets/temple.png','assets/golden-expression.png'];
   visible = ['black','colour'].flatMap(set => {
     const items = visible.filter(photo => photoSet(photo) === set);
-    return set === 'black' ? items.sort((a,b) => blackDisplayOrder.indexOf(a.id) - blackDisplayOrder.indexOf(b.id)) : items;
+    const order = set === 'black' ? blackDisplayOrder : colourDisplayOrder;
+    return items.sort((a,b) => order.indexOf(a.id) - order.indexOf(b.id));
   });
   sets.forEach(set => {
     const count = visible.filter(photo => photoSet(photo) === set.id).length;
@@ -203,6 +205,7 @@ function renderGallery(){
     });
     card.addEventListener('pointerleave',()=>{wrap.style.setProperty('--rx','0deg');wrap.style.setProperty('--ry','0deg');});
     if (photoSet(photo) !== 'black') {
+      card.querySelector('.card-category')?.remove();
       const description = document.createElement('span');
       description.className = 'editorial-description';
       description.textContent = photo.caption;
@@ -248,6 +251,14 @@ function arrangeColourCarousel() {
     });
     controls.querySelector('.curve-count').textContent=String(active+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
   }
+  // Select a side frame first; the centred frame opens the fitted viewer.
+  cards.forEach((card,index)=>card.addEventListener('click',event=>{
+    if(index===active)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    select(index);
+    card.focus({preventScroll:true});
+  },true));
   controls.querySelector('.curve-prev').addEventListener('click',()=>select(active-1));
   controls.querySelector('.curve-next').addEventListener('click',()=>select(active+1));
   const pause=controls.querySelector('.curve-pause');
@@ -272,7 +283,7 @@ function showImage(){
   fullImage.src=imageURL(photo.id,2400);fullImage.alt=photo.alt || `${photo.title} — stock photograph by ${photo.credit}`;
   document.querySelector('#lightbox-title').textContent=photo.title;
   document.querySelector('#lightbox-category').textContent=photo.category;
-  document.querySelector('#lightbox-detail').textContent=`${photo.detail} · ${photo.caption}`;
+  document.querySelector('#lightbox-detail').textContent=[photo.detail, photo.caption].filter(Boolean).join(' · ');
   document.querySelector('.image-counter').textContent=`${String(current+1).padStart(2,'0')} / ${String(visible.length).padStart(2,'0')}`;
   const source=document.querySelector('#photo-source');source.href=sourceURL(photo.id);source.textContent=typeof photo.id === 'string' ? 'View original image ↗' : `Stock placeholder · ${photo.credit} / Pexels ↗`;
 }
