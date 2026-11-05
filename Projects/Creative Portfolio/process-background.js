@@ -83,23 +83,29 @@ document.querySelectorAll('.hero, .showcase, .markets, .process, .contact').forE
     const rect = section.getBoundingClientRect();
     width = Math.max(1, rect.width);
     height = Math.max(1, rect.height);
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const ratio = Math.min(window.devicePixelRatio || 1, width < 720 ? 1 : 1.5, 4096 / Math.max(width, height));
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     draw(reducedMotion.matches ? 0 : elapsed);
     refresh();
   }
-  section.addEventListener('pointermove', (event) => {
-    if (reducedMotion.matches || event.pointerType === 'touch') return;
+  function track(event) {
+    if (reducedMotion.matches) return;
     const rect = section.getBoundingClientRect();
     pointer.targetX = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
     pointer.targetY = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
     pointer.targetStrength = 1;
-  }, { passive: true });
+  }
+  section.addEventListener('pointermove', track, { passive: true });
+  section.addEventListener('pointerdown', track, { passive: true });
+  section.addEventListener('pointercancel', () => { pointer.targetStrength = 0; });
+  section.addEventListener('pointerup', () => { pointer.targetStrength = 0; });
   section.addEventListener('pointerleave', () => { pointer.targetStrength = 0; });
   document.addEventListener('visibilitychange', refresh);
-  reducedMotion.addEventListener('change', refresh);
+  window.addEventListener('pageshow', refresh);
+  if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', refresh);
+  else if (reducedMotion.addListener) reducedMotion.addListener(refresh);
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(section);
   else window.addEventListener('resize', resize, { passive: true });
   if ('IntersectionObserver' in window) {

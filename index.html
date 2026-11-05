@@ -908,9 +908,39 @@
       <section id="top" class="hero">
         <canvas class="process-background" aria-hidden="true"></canvas>
         <div class="hero-bg">
-          <video muted autoplay loop playsinline disablepictureinpicture style="display:block;width:100%;height:auto;opacity:1" poster="Media/Images/portfolio-header-20260924.jpg" aria-label="Portfolio portrait beside a moving train">
-            <source src="Media/portfolio-train-lumina.mp4" type="video/mp4" media="(prefers-reduced-motion: no-preference)">
+          <video muted loop playsinline disablepictureinpicture preload="metadata" src="Media/portfolio-train-lumina.mp4"
+            style="display:block;width:100%;height:auto;aspect-ratio:854/480;object-fit:contain;opacity:1"
+            poster="Media/Images/portfolio-header-20260924.jpg" aria-label="Portfolio portrait beside a moving train">
           </video>
+          <button type="button" hidden aria-label="Play train video" title="Play train video"
+            style="position:absolute;right:12px;bottom:12px;min-width:44px;min-height:44px;border:1px solid #d8c39b;border-radius:50%;background:#070709;color:#f0e3ca;cursor:pointer">&#9654;</button>
+          <script>
+            (() => {
+              const frame = document.currentScript.parentElement;
+              const video = frame.querySelector('video');
+              const play = frame.querySelector('button');
+              const motion = matchMedia('(prefers-reduced-motion: reduce)');
+              const start = () => {
+                video.muted = true;
+                video.play().catch(() => { play.hidden = false; });
+              };
+              video.addEventListener('playing', () => { play.hidden = true; });
+              video.addEventListener('pause', () => { play.hidden = false; });
+              play.addEventListener('click', start);
+              play.hidden = false;
+              if (!motion.matches) start();
+              const resume = () => {
+                const bounds = video.getBoundingClientRect();
+                if (!document.hidden && !motion.matches && video.paused &&
+                    bounds.bottom > 0 && bounds.top < innerHeight) start();
+              };
+              const onMotionChange = () => { if (motion.matches) video.pause(); else resume(); };
+              if (motion.addEventListener) motion.addEventListener('change', onMotionChange);
+              else if (motion.addListener) motion.addListener(onMotionChange);
+              window.addEventListener('pageshow', resume);
+              document.addEventListener('visibilitychange', resume);
+            })();
+          </script>
         </div>
         <div class="hero-inner">
           <div>
@@ -1026,7 +1056,7 @@
     </main>
 
     <script src="Projects/Creative Portfolio/portfolio-sites.js"></script>
-    <script src="Projects/Creative Portfolio/process-background.js"></script>
-    <script src="Projects/Creative Portfolio/site-motion.js"></script>
+    <script src="Projects/Creative Portfolio/process-background.js?v=safari-playback-1"></script>
+    <script src="Projects/Creative Portfolio/site-motion.js?v=safari-playback-1"></script>
   </body>
 </html>

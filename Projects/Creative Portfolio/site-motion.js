@@ -38,13 +38,15 @@
   window.addEventListener('scroll', scheduleProgress, { passive: true });
   window.addEventListener('resize', scheduleProgress, { passive: true });
   window.addEventListener('load', scheduleProgress, { once: true });
-  reduced.addEventListener('change', () => {
+  function onMotionChange() {
     if (reduced.matches) {
       running.forEach(animation => animation.cancel());
       running.clear();
       cancelAnimationFrame(frame);
       frame = 0;
     } else scheduleProgress();
-  });
+  }
+  if (reduced.addEventListener) reduced.addEventListener('change', onMotionChange);
+  else if (reduced.addListener) reduced.addListener(onMotionChange);
   scheduleProgress();
 })();
