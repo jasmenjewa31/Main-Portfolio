@@ -938,11 +938,11 @@
                 fallback = new Image();
                 fallback.alt = video.getAttribute('aria-label');
                 fallback.onload = () => { video.style.display = 'none'; };
-                fallback.src = 'Media/lumina-035710.webp';
+                fallback.src = 'Media/lumina-035710-clear-loop.webp';
                 frame.appendChild(fallback);
               }
               const start = () => {
-                if (!video.hasAttribute('src')) video.src = 'Media/lumina-035710.mp4';
+                if (!video.hasAttribute('src')) video.src = 'Media/lumina-035710-clear-loop.mp4';
                 video.muted = true;
                 video.play().catch(showFallback);
               };
