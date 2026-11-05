@@ -925,7 +925,7 @@
         <div class="hero-bg">
           <video autoplay muted loop playsinline disablepictureinpicture preload="metadata"
             style="display:block;width:100%;height:auto;aspect-ratio:854/480;object-fit:contain;opacity:1"
-            poster="Media/lumina-header-still.jpg" aria-label="Portfolio portrait beside a moving train">
+            poster="Media/lumina-035710.jpg" aria-label="Portfolio portrait beside a moving train">
           </video>
           <script>
             (() => {
@@ -938,11 +938,11 @@
                 fallback = new Image();
                 fallback.alt = video.getAttribute('aria-label');
                 fallback.onload = () => { video.style.display = 'none'; };
-                fallback.src = 'Media/lumina-header-motion.webp';
+                fallback.src = 'Media/lumina-035710.webp';
                 frame.appendChild(fallback);
               }
               const start = () => {
-                if (!video.hasAttribute('src')) video.src = 'Media/portfolio-train-lumina.mp4';
+                if (!video.hasAttribute('src')) video.src = 'Media/lumina-035710.mp4';
                 video.muted = true;
                 video.play().catch(showFallback);
               };
