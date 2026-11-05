@@ -932,6 +932,18 @@
               const frame = document.currentScript.parentElement;
               const video = frame.querySelector('video');
               const motion = matchMedia('(prefers-reduced-motion: reduce)');
+              if (matchMedia('(pointer: coarse), (max-width: 720px)').matches) {
+                const picture = document.createElement('picture');
+                const animated = document.createElement('source');
+                animated.media = '(prefers-reduced-motion: no-preference)';
+                animated.srcset = 'Media/header-040426-c7f2ced7.webp';
+                const still = new Image();
+                still.alt = video.getAttribute('aria-label');
+                still.src = video.poster;
+                picture.append(animated, still);
+                video.replaceWith(picture);
+                return;
+              }
               let fallback;
               function showFallback() {
                 if (motion.matches || fallback || document.hidden) return;
