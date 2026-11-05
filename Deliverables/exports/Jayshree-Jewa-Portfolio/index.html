@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=tala-blend-2">
   <script src="gallery.js?v=large-viewer-44" defer></script>
-  <script src="motion.js?v=mobile-motion-43" defer></script>
-  <link rel="stylesheet" href="refinement.css?v=large-viewer-44">
+  <script src="motion.js?v=aspects-carousel-45" defer></script>
+  <link rel="stylesheet" href="refinement.css?v=aspects-carousel-45">
 </head>
 <body>
   <div class="site-atmosphere" aria-hidden="true"><i style="--x:9%;--y:7%;--duration:22s;--delay:-0s;--size:3px"></i><i style="--x:46%;--y:30%;--duration:26s;--delay:-3s;--size:2px"></i><i style="--x:83%;--y:53%;--duration:30s;--delay:-6s;--size:2px"></i><i style="--x:20%;--y:76%;--duration:34s;--delay:-9s;--size:3px"></i><i style="--x:57%;--y:99%;--duration:38s;--delay:-12s;--size:2px"></i><i style="--x:94%;--y:22%;--duration:42s;--delay:-15s;--size:2px"></i><i style="--x:31%;--y:45%;--duration:46s;--delay:-18s;--size:3px"></i><i style="--x:68%;--y:68%;--duration:22s;--delay:-21s;--size:2px"></i><i style="--x:5%;--y:91%;--duration:26s;--delay:-24s;--size:2px"></i><i style="--x:42%;--y:14%;--duration:30s;--delay:-27s;--size:3px"></i><i style="--x:79%;--y:37%;--duration:34s;--delay:-30s;--size:2px"></i><i style="--x:16%;--y:60%;--duration:38s;--delay:-33s;--size:2px"></i><i style="--x:53%;--y:83%;--duration:42s;--delay:-36s;--size:3px"></i><i style="--x:90%;--y:6%;--duration:46s;--delay:-39s;--size:2px"></i><i style="--x:27%;--y:29%;--duration:22s;--delay:-42s;--size:2px"></i><i style="--x:64%;--y:52%;--duration:26s;--delay:-45s;--size:3px"></i><i style="--x:1%;--y:75%;--duration:30s;--delay:-48s;--size:2px"></i><i style="--x:38%;--y:98%;--duration:34s;--delay:-51s;--size:2px"></i><i style="--x:75%;--y:21%;--duration:38s;--delay:-54s;--size:3px"></i><i style="--x:12%;--y:44%;--duration:42s;--delay:-57s;--size:2px"></i><i style="--x:49%;--y:67%;--duration:46s;--delay:-60s;--size:2px"></i><i style="--x:86%;--y:90%;--duration:22s;--delay:-63s;--size:3px"></i><i style="--x:23%;--y:13%;--duration:26s;--delay:-66s;--size:2px"></i><i style="--x:60%;--y:36%;--duration:30s;--delay:-69s;--size:2px"></i></div>
@@ -39,11 +39,16 @@
 
       <div class="hero-bottom"><span>BHAVA · RAGA · TALA</span><a href="#gallery">SCROLL TO DISCOVER ↓</a></div>
     </section>
-    <section class="dance-aspects" aria-label="Nritta, Natya and Nritya">
+    <section class="dance-aspects" id="dance-aspects" aria-label="Nritta, Natya and Nritya">
         <div class="hero-filmstrip" aria-label="Three aspects of classical dance">
           <button class="hero-frame" data-feature="assets/temple.png" aria-label="Nritta — view Temple reverie"><img src="assets/temple.png" alt="Seated dance pose before Nataraja"><span>Nritta</span></button>
           <button class="hero-frame" data-feature="assets/warm-portrait.png" aria-label="Natya — view Between the moments"><img src="assets/warm-portrait.png" alt="Expressive portrait in white and vermilion"><span>Natya</span></button>
           <button class="hero-frame" data-feature="assets/golden-expression.png" aria-label="Nritya — view A world within"><img src="assets/golden-expression.png" alt="Expressive dance gesture in golden light"><span>Nritya</span></button>
+        </div>
+        <div class="aspect-controls" hidden>
+          <button type="button" aria-label="Previous dance aspect">←</button>
+          <span class="aspect-count"></span>
+          <button type="button" aria-label="Next dance aspect">→</button>
         </div>
     </section>
     <section class="collection" id="gallery" aria-labelledby="gallery-title">

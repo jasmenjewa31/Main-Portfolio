@@ -108,6 +108,43 @@ nav{gap:18px;font-size:10px}.nav-inquire{padding:8px 10px}.nav-inquire span{marg
 @media(max-width:850px){.dance-aspects{padding:70px 6% 80px;}.dance-aspects .hero-filmstrip{gap:28px;}}
 @media(max-width:600px){.dance-aspects{padding:60px 7% 70px;}.dance-aspects .hero-filmstrip{grid-template-columns:1fr;max-width:340px;gap:48px;}.dance-aspects .hero-frame span{padding:17px 0 13px;}}
 
+@media (max-width: 700px) {
+  .dance-aspects.aspect-carousel .hero-filmstrip {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    gap: 0;
+    overflow: hidden;
+    touch-action: pan-y pinch-zoom;
+  }
+  .aspect-carousel .hero-filmstrip > .hero-frame:nth-child(n) {
+    grid-area: 1 / 1;
+    width: 100%;
+    margin: 0;
+    animation: none;
+    translate: none;
+    transform: none;
+  }
+  .aspect-carousel .hero-frame[inert] { visibility: hidden; }
+  .aspect-controls:not([hidden]) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 16px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .aspect-controls button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--background);
+    color: var(--text);
+    font-size: 19px;
+  }
+}
+
 /* Readable supporting typography across screen sizes. */
 .cinematic-hero .eyebrow{font-size:14px;letter-spacing:.16em;font-weight:500;}
 .cinematic-hero .hero-subtitle{font-size:clamp(17px,1.45vw,21px);line-height:1.65;color:var(--text);max-width:28em;}

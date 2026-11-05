@@ -61,6 +61,89 @@ function animateScene(time) {
 }
 requestAnimationFrame(animateScene);
 
+function setupAspectCarousel() {
+  const section = featuredStrip.closest('.dance-aspects');
+  const controls = section.querySelector('.aspect-controls');
+  const counter = controls.querySelector('.aspect-count');
+  const [previous, next] = controls.querySelectorAll('button');
+  const discover = document.querySelector('.hero-bottom a');
+  const phone = matchMedia('(max-width: 700px)');
+  let current = 0;
+  let slides = [];
+  let timer;
+  let touchStart;
+
+  function update() {
+    featuredCards.forEach((card, index) => {
+      card.inert = phone.matches && index !== current;
+    });
+    counter.textContent = (current + 1) + ' / ' + featuredCards.length;
+  }
+
+  function advance(step) {
+    const outgoing = featuredCards[current];
+    current = (current + step + featuredCards.length) % featuredCards.length;
+    const incoming = featuredCards[current];
+    slides.forEach(animation => animation.cancel());
+    update();
+    scheduleAdvance();
+    if (motionPaused || reducedMotion.matches) return;
+    const shift = step * 100;
+    const timing = {duration: 520, easing: 'cubic-bezier(.25,.75,.25,1)'};
+    slides = [
+      outgoing.animate([{visibility:'visible', transform:'translateX(0)'}, {visibility:'visible', transform:'translateX(' + shift + '%)'}], timing),
+      incoming.animate([{transform:'translateX(' + -shift + '%)'}, {transform:'translateX(0)'}], timing)
+    ];
+  }
+
+  function scheduleAdvance() {
+    clearInterval(timer);
+    if (!phone.matches) return;
+    timer = setInterval(() => {
+      if (section.classList.contains('motion-in-view') && !motionPaused && !reducedMotion.matches &&
+          !document.hidden && !modal.open && !info.open && !touchStart && !section.contains(document.activeElement)) {
+        advance(1);
+      }
+    }, 4200);
+  }
+
+  function configure() {
+    slides.forEach(animation => animation.cancel());
+    section.classList.toggle('aspect-carousel', phone.matches);
+    controls.hidden = !phone.matches;
+    discover.hash = phone.matches ? 'dance-aspects' : 'gallery';
+    update();
+    scheduleAdvance();
+  }
+
+  previous.addEventListener('click', () => advance(-1));
+  next.addEventListener('click', () => advance(1));
+  featuredStrip.addEventListener('touchstart', event => {
+    touchStart = phone.matches && event.touches.length === 1 ? event.touches[0] : null;
+  }, {passive:true});
+  featuredStrip.addEventListener('touchcancel', () => { touchStart = null; });
+  featuredStrip.addEventListener('touchend', event => {
+    if (!touchStart) return;
+    const end = event.changedTouches[0];
+    const dx = end.clientX - touchStart.clientX;
+    const dy = end.clientY - touchStart.clientY;
+    touchStart = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (event.cancelable) event.preventDefault();
+      advance(Math.sign(dx));
+    } else if (event.cancelable && Math.hypot(dx, dy) < 8) {
+      const card = event.target.closest('.hero-frame');
+      if (card && !card.inert) {
+        event.preventDefault();
+        card.click();
+      }
+    }
+  }, {passive:false});
+  phone.addEventListener('change', configure);
+  configure();
+}
+setupAspectCarousel();
+
 // Featured header cards open the same accessible viewer as the gallery.
 document.querySelectorAll('[data-feature]').forEach(button => {
   button.addEventListener('click', () => {
