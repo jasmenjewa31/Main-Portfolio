@@ -3,6 +3,7 @@ document.querySelectorAll('.hero, .showcase, .markets, .process, .contact').forE
   const context = canvas?.getContext('2d');
   if (!context) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobileDrift = window.matchMedia('(max-width: 720px) and (prefers-reduced-motion: no-preference)');
   const accent = 'rgba(216,195,155,0.28)';
   let width = 1, height = 1, frame = 0, lastTime = 0, elapsed = 0;
   let visible = true;
@@ -72,7 +73,9 @@ document.querySelectorAll('.hero, .showcase, .markets, .process, .contact').forE
     cancelAnimationFrame(frame);
     frame = 0;
     lastTime = 0;
-    if (reducedMotion.matches) {
+    if (mobileDrift.matches) {
+      context.clearRect(0, 0, width, height);
+    } else if (reducedMotion.matches) {
       pointer.strength = 0;
       draw(0);
     } else if (visible && !document.hidden) {
