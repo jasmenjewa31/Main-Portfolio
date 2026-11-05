@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="3D portfolio website concept for Malaysian brands, performers, creators, and service businesses."
+      content="3D portfolio website concept for Malaysian brands, freelancers, creators, and service businesses."
     />
     <title>Creative Portfolio Malaysia</title>
     <style>
@@ -751,8 +751,138 @@
       .contact-details a:hover { color: var(--lagoon); }
       .contact-details a:focus-visible { outline: 2px solid var(--lagoon); outline-offset: 5px; }
       .contact-details span { display: block; font-size: 12px; color: #bdbdbd; margin-bottom: 4px; }
-    
-      .genre-sites { margin-top: 22px; display: grid; gap: 10px; }
+      .hero, .showcase, .markets { isolation: isolate; }
+      .hero { background-image: none; }
+      .hero > .process-background, .showcase > .process-background, .markets > .process-background { z-index: 0; }
+      .hero > .hero-bg, .hero > .hero-inner, .showcase > .section-inner, .markets > .section-inner {
+        position: relative;
+        z-index: 1;
+      }
+      /* Shared motion rhythm; all content remains visible without JavaScript. */
+      :root { --motion-ease: cubic-bezier(.22, 1, .36, 1); }
+      .parallax { transform: none; will-change: auto; }
+      .depth-layer { transform: none; }
+      .tilt-card { transform-style: flat; }
+      .site-header { transition: background 450ms ease, border-color 450ms ease; }
+      .nav-links a { position: relative; padding: 8px 0; }
+      .nav-links a::after {
+        content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px;
+        background: var(--lagoon); transform: scaleX(0); transform-origin: left;
+        transition: transform 450ms var(--motion-ease);
+      }
+      .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+      .button {
+        position: relative; overflow: hidden;
+        transition: transform 450ms var(--motion-ease), background 300ms ease, border-color 300ms ease, box-shadow 450ms ease;
+      }
+      .button::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(110deg, transparent 35%, #ffffff18 50%, transparent 65%);
+        transform: translateX(-140%); pointer-events: none;
+        transition: transform 800ms var(--motion-ease);
+      }
+      .button:focus-visible, a:focus-visible { outline: 2px solid var(--lagoon); outline-offset: 5px; }
+      .sector-grid .tilt-card {
+        transition: transform 650ms var(--motion-ease), border-color 450ms ease, background 450ms ease, box-shadow 650ms ease;
+      }
+      .showcase-figure { transition: border-color 500ms ease, box-shadow 650ms ease; }
+      .scroll-progress {
+        position: fixed; inset: 0 0 auto; height: 2px; z-index: 60;
+        background: var(--ember); transform: scaleX(0); transform-origin: left; pointer-events: none;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px #0003; }
+        .button:hover::after { transform: translateX(140%); }
+        .sector-grid .tilt-card:hover {
+          transform: translateY(-5px);
+          border-color: #d5a74f99;
+          background: #ffffff0d;
+          box-shadow: 0 18px 40px #0004;
+        }
+        .showcase-figure:hover { border-color: #d5a74f99; box-shadow: 0 30px 65px #0006; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .button:hover, .sector-grid .tilt-card:hover { transform: none; }
+        .button::after, .scroll-progress { display: none; }
+      }
+      .site-header { isolation: isolate; background: rgba(9, 9, 9, 0.94); }
+      .site-header .nav { position: relative; z-index: 1; }
+      .nav-motion { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+      .nav-motion span {
+        position: absolute; left: -40%; top: 16%; width: 40%; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(213,167,79,.38), transparent);
+        animation: nav-light-drift 16s linear infinite;
+      }
+      .nav-motion span:nth-child(2) {
+        top: 40%; width: 32%; left: -32%; animation-duration: 19s; animation-delay: -9s;
+        background: linear-gradient(90deg, transparent, rgba(243,78,78,.32), transparent);
+      }
+      .nav-motion span:nth-child(3) {
+        top: 68%; animation-duration: 22s; animation-delay: -15s;
+        background: linear-gradient(90deg, transparent, rgba(210,213,220,.24), transparent);
+      }
+      .nav-motion span:nth-child(4) { top: 93%; animation-duration: 18s; animation-delay: -5s; }
+      @keyframes nav-light-drift {
+        from { transform: translateX(0); }
+        to { transform: translateX(450%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .nav-motion span { animation: none; left: 30%; }
+      }
+      /* Midnight black and champagne gold, shared across every section. */
+      :root {
+        --midnight: #070709;
+        --champagne: #d8c39b;
+        --champagne-light: #f0e3ca;
+        --gold-border: rgba(216, 195, 155, 0.24);
+        --carbon: var(--midnight);
+        --ember: var(--champagne);
+        --brass: var(--champagne);
+        --lagoon: var(--champagne-light);
+        --pearl: #f3f0e9;
+      }
+      body, .hero, .showcase, .markets, .process, .contact { background-color: var(--midnight); }
+      .site-header { background: rgba(7, 7, 9, 0.96); border-bottom-color: var(--gold-border); }
+      .hero-bg, .hero .hero-bg img { background-color: var(--midnight); }
+      .process { color: var(--pearl); border-top-color: var(--gold-border); }
+      .section-kicker, .markets .section-kicker, .process .section-kicker,
+      .contact .section-kicker, .process #process-title, .process-stage-number,
+      .card-number, .card-kicker, .stat strong { color: var(--champagne); }
+      .process-tagline em, .process h2 em { color: var(--champagne-light); }
+      .hero-copy, .section-copy, .process-intro, .process-stage p, .card-copy { color: #c6c1b8; }
+      .eyebrow { color: var(--champagne-light); border-color: var(--gold-border); background: rgba(216,195,155,.045); }
+      .stats-panel { background: rgba(7,7,9,.72); border-color: var(--gold-border); }
+      .stat, .mini-grid span, .tilt-card, .showcase-figure {
+        border-color: var(--gold-border);
+        background-color: rgba(216,195,155,.025);
+      }
+      .process-stage { border-top-color: var(--gold-border); }
+      .card-dot { background: var(--champagne); }
+      .showcase::before { background: linear-gradient(90deg, transparent, var(--gold-border), transparent); }
+      .button { border-color: rgba(216,195,155,.6); color: var(--champagne-light); }
+      .primary-button { background: var(--champagne); color: var(--midnight); border-color: var(--champagne); }
+      .button:hover { background: var(--champagne-light); color: var(--midnight); border-color: var(--champagne-light); }
+      .secondary-button:hover { background: rgba(216,195,155,.08); color: var(--champagne-light); }
+      .button::after { background: linear-gradient(110deg, transparent 35%, #f0e3ca28 50%, transparent 65%); }
+      .nav-links a:hover { color: var(--champagne-light); }
+      .nav-links a::after, .scroll-progress { background: var(--champagne); }
+      .nav-motion span:nth-child(n) {
+        background: linear-gradient(90deg, transparent, rgba(216,195,155,.30), transparent);
+        animation-duration: 24s;
+      }
+      .nav-motion span:nth-child(2) { animation-duration: 28s; }
+      .nav-motion span:nth-child(3) { animation-duration: 32s; }
+      .nav-motion span:nth-child(4) { animation-duration: 26s; }
+      @media (hover: hover) and (pointer: fine) {
+        .sector-grid .tilt-card:hover, .showcase-figure:hover {
+          border-color: rgba(216,195,155,.65);
+          background-color: rgba(216,195,155,.055);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .nav-motion span:nth-child(n) { animation: none; }
+      }
+          .genre-sites { margin-top: 22px; display: grid; gap: 10px; }
       .project-link { display: block; padding: 12px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 12px; color: inherit; text-decoration: none; font-size: 14px; line-height: 1.5; }
       .project-link:hover { background: rgba(255,255,255,.1); border-color: currentColor; }
       .project-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
@@ -761,6 +891,7 @@
   </head>
   <body>
     <header class="site-header">
+      <div class="nav-motion" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       <nav class="nav" aria-label="Main navigation">
         <a class="brand" href="#top">Creative Portfolio</a>
         <div class="nav-links">
@@ -775,9 +906,11 @@
 
     <main>
       <section id="top" class="hero">
+        <canvas class="process-background" aria-hidden="true"></canvas>
         <div class="hero-bg">
-          <img src="Media/Images/portfolio-header-20260924.jpg" width="1024" height="565" fetchpriority="high"
-            alt="Woman beside a train with red PORTFOLIO lettering" />
+          <video muted autoplay loop playsinline disablepictureinpicture style="display:block;width:100%;height:auto;opacity:1" poster="Media/Images/portfolio-header-20260924.jpg" aria-label="Portfolio portrait beside a moving train">
+            <source src="Media/portfolio-train-lumina.mp4" type="video/mp4" media="(prefers-reduced-motion: no-preference)">
+          </video>
         </div>
         <div class="hero-inner">
           <div>
@@ -804,6 +937,7 @@
       </section>
 
       <section id="showcase" class="showcase">
+        <canvas class="process-background" aria-hidden="true"></canvas>
         <div class="section-inner showcase-grid">
           <div class="parallax" data-speed="-0.04">
             <p class="section-kicker">Visual system</p>
@@ -832,6 +966,7 @@
       </section>
 
       <section id="markets" class="markets">
+          <canvas class="process-background" aria-hidden="true"></canvas>
         <div class="section-inner">
           <div class="markets-heading">
             <p class="section-kicker">Portfolio directions</p>
@@ -892,61 +1027,6 @@
 
     <script src="Projects/Creative Portfolio/portfolio-sites.js"></script>
     <script src="Projects/Creative Portfolio/process-background.js"></script>
-    <script>
-      const parallaxItems = document.querySelectorAll(".parallax");
-      const tiltCards = document.querySelectorAll(".tilt-card");
-      const hero = document.querySelector(".hero");
-      const heroBg = document.querySelector(".hero-bg");
-
-      function updateParallax() {
-        parallaxItems.forEach((item) => {
-          const speed = Number(item.dataset.speed || 0);
-          item.style.setProperty("--parallax-y", `${window.scrollY * speed}px`);
-        });
-
-        if (heroBg) {
-          heroBg.style.setProperty("--hero-scroll", window.scrollY);
-        }
-      }
-
-      function updateHeroPointer(event) {
-        if (!hero || !heroBg) return;
-
-        const rect = hero.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width - 0.5).toFixed(3);
-        const y = ((event.clientY - rect.top) / rect.height - 0.5).toFixed(3);
-        heroBg.style.setProperty("--hero-pointer-x", x);
-        heroBg.style.setProperty("--hero-pointer-y", y);
-      }
-
-      function resetHeroPointer() {
-        if (!heroBg) return;
-
-        heroBg.style.setProperty("--hero-pointer-x", 0);
-        heroBg.style.setProperty("--hero-pointer-y", 0);
-      }
-
-      tiltCards.forEach((card) => {
-        card.addEventListener("mousemove", (event) => {
-          const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          const rotateY = (x / rect.width - 0.5) * 12;
-          const rotateX = (0.5 - y / rect.height) * 12;
-          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg)";
-        });
-      });
-
-      updateParallax();
-      window.addEventListener("scroll", updateParallax, { passive: true });
-      if (hero) {
-        hero.addEventListener("mousemove", updateHeroPointer);
-        hero.addEventListener("mouseleave", resetHeroPointer);
-      }
-    </script>
+    <script src="Projects/Creative Portfolio/site-motion.js"></script>
   </body>
 </html>
