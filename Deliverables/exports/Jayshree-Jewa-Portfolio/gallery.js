@@ -183,6 +183,7 @@ function renderGallery(){
   });
   visible.forEach((photo,index) => {
     const card = document.createElement(photoSet(photo) === 'black' ? 'figure' : 'button'); card.className = 'gallery-card';
+    card.dataset.photoIndex = String(index);
     if (['assets/blue-portrait.jpg','assets/warm-portrait.png'].includes(photo.id)) card.classList.add('portrait');
     card.style.setProperty('--delay',`${Math.min(index,5)*60}ms`);
     card.setAttribute('aria-label',`View ${photo.title}, ${photo.category}`);
@@ -194,9 +195,6 @@ function renderGallery(){
     card.prepend(frameNumber);
     const wrap = card.querySelector('.photo-wrap');
     card.querySelector('img').addEventListener('error',()=>wrap.classList.add('failed'));
-    if (photoSet(photo) !== 'black') {
-    card.addEventListener('click',()=>{current=index;openingCard=card;modal.classList.add('collection-viewer');showImage();modal.showModal();document.body.style.overflow='hidden';});
-    }
     card.addEventListener('pointermove',event=>{
       if(photoSet(photo) !== 'black' || !finePointer.matches || reducedMotion.matches || document.body.classList.contains('motion-paused'))return;
       const box=card.getBoundingClientRect();
@@ -251,14 +249,16 @@ function arrangeColourCarousel() {
     });
     controls.querySelector('.curve-count').textContent=String(active+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
   }
-  // Select a side frame first; the centred frame opens the fitted viewer.
-  cards.forEach((card,index)=>card.addEventListener('click',event=>{
-    if(index===active)return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
+  // The first click selects the frame and opens that same photograph.
+  cards.forEach((card,index)=>card.addEventListener('click',()=>{
     select(index);
-    card.focus({preventScroll:true});
-  },true));
+    current = Number(card.dataset.photoIndex);
+    openingCard = card;
+    modal.classList.add('colour-photo-viewer');
+    showImage();
+    modal.showModal();
+    document.body.style.overflow = 'hidden';
+  }));
   controls.querySelector('.curve-prev').addEventListener('click',()=>select(active-1));
   controls.querySelector('.curve-next').addEventListener('click',()=>select(active+1));
   const pause=controls.querySelector('.curve-pause');
@@ -292,7 +292,7 @@ function navigate(direction){current=(current+direction+visible.length)%visible.
 document.querySelector('.previous').addEventListener('click',()=>navigate(-1));
 document.querySelector('.next').addEventListener('click',()=>navigate(1));
 document.querySelector('.close-lightbox').addEventListener('click',()=>modal.close());
-modal.addEventListener('close',()=>{document.body.style.overflow='';modal.classList.remove('collection-viewer');resetZoom();openingCard?.focus({preventScroll:true});});
+modal.addEventListener('close',()=>{document.body.style.overflow='';modal.classList.remove('collection-viewer','colour-photo-viewer');resetZoom();openingCard?.focus({preventScroll:true});});
 modal.addEventListener('keydown',event=>{if(event.key==='ArrowRight'){event.preventDefault();navigate(1);}if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1);}});
 zoomButton.hidden=true;
 zoomButton.disabled=true;

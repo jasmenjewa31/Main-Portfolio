@@ -178,6 +178,32 @@ nav{gap:18px;font-size:10px}.nav-inquire{padding:8px 10px}.nav-inquire span{marg
 .collection-viewer .image-stage .full-image[hidden]{display:none;}
 @media(max-width:600px){.collection-viewer .image-stage{padding:8px;box-shadow:inset 0 0 0 3px var(--background);}}
 
+/* Give the opened Collection 02 photograph the available screen space. */
+.lightbox.colour-photo-viewer {
+  width: min(94vw, 1280px);
+  max-width: none;
+  height: min(94dvh, 1080px);
+  max-height: 96dvh;
+  padding: clamp(10px, 1.4vw, 20px);
+}
+.colour-photo-viewer .viewer {
+  flex: 1 1 0;
+  height: auto;
+  padding: 0;
+}
+.colour-photo-viewer .image-stage { padding: 4px; }
+@media (max-width: 650px) {
+  .lightbox.colour-photo-viewer { width: calc(100vw - 12px); padding: 8px; }
+  .colour-photo-viewer .viewer {
+    display: grid;
+    grid-template: minmax(0, 1fr) 44px / 1fr 1fr;
+    gap: 2px;
+  }
+  .colour-photo-viewer .image-stage { grid-area: 1 / 1 / 2 / 3; }
+  .colour-photo-viewer .previous { grid-area: 2 / 1; }
+  .colour-photo-viewer .next { grid-area: 2 / 2; }
+}
+
 /* Expressions in Stillness: quiet resting portraits, gentle hover emphasis. */
 .set-black .set-collage>.gallery-card:nth-child(n){animation:none;transform:none;translate:none;transition:transform .55s cubic-bezier(.22,1,.36,1);}
 .set-black .set-collage>.gallery-card:nth-child(n) .photo-wrap{filter:drop-shadow(0 0 0 transparent);transition:filter .55s ease;}
