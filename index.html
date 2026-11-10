@@ -903,6 +903,7 @@
         to { background-position: 156px 0, 240px 0; }
       }
     </style>
+    <link rel="stylesheet" href="assets/whatsapp-enquiry.css?v=2" />
   </head>
   <body>
     <header class="site-header">
@@ -1088,12 +1089,103 @@
           </div>
           <div class="contact-actions">
             <a class="button primary-button" href="mailto:jasmenjewa4@gmail.com">Email Enquiry</a>
-            <a class="button secondary-button" href="https://wa.me/601126490119">WhatsApp Enquiry</a>
+            <a class="button secondary-button" data-whatsapp-enquiry href="https://wa.me/601126490119?text=Hi%20Jasmen%2C%20I%20found%20jasmen.asia%20and%20would%20like%20to%20discuss%20a%20website%20project.">WhatsApp Enquiry</a>
           </div>
         </div>
       </section>
     </main>
 
+    <a class="wa-float" data-whatsapp-enquiry href="https://wa.me/601126490119?text=Hi%20Jasmen%2C%20I%20found%20jasmen.asia%20and%20would%20like%20to%20discuss%20a%20website%20project." aria-label="Open WhatsApp project enquiry">
+      <img src="assets/whatsapp.svg" width="28" height="28" alt="" />
+      <span class="wa-tooltip" aria-hidden="true">WhatsApp enquiry</span>
+    </a>
+
+    <dialog class="wa-dialog" id="wa-enquiry" aria-labelledby="wa-title">
+      <header class="wa-heading">
+        <div>
+          <p class="wa-eyebrow">Jasmen.asia / Project enquiry</p>
+          <h2 id="wa-title" tabindex="-1">Your next chapter starts here.</h2>
+        </div>
+        <button class="wa-close" type="button" aria-label="Close enquiry" title="Close enquiry">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        </button>
+      </header>
+      <form id="wa-form" action="https://wa.me/601126490119" method="get" target="_blank" rel="noopener noreferrer">
+        <input type="hidden" name="text" id="wa-message-value" />
+        <div class="wa-fields">
+          <div class="wa-row">
+            <div class="wa-field">
+              <label for="wa-name">Your name <span aria-hidden="true">*</span></label>
+              <input id="wa-name" autocomplete="name" required maxlength="60" />
+            </div>
+            <div class="wa-field">
+              <label for="wa-brand">Business / brand <span>(optional)</span></label>
+              <input id="wa-brand" autocomplete="organization" maxlength="80" />
+            </div>
+          </div>
+
+          <fieldset class="wa-services" aria-describedby="wa-service-error">
+            <legend>I'm interested in <span aria-hidden="true">*</span></legend>
+            <div class="wa-checks">
+              <label><input type="checkbox" value="New website design" /><span>New website design</span></label>
+              <label><input type="checkbox" value="Website redesign" /><span>Website redesign</span></label>
+              <label><input type="checkbox" value="Landing page / campaign" /><span>Landing page / campaign</span></label>
+              <label><input type="checkbox" value="Portfolio website" /><span>Portfolio website</span></label>
+              <label><input type="checkbox" value="Advice on the right approach" /><span>Help choosing a direction</span></label>
+            </div>
+            <p id="wa-service-error" class="wa-error" hidden>Please choose at least one service.</p>
+          </fieldset>
+
+          <div class="wa-row">
+            <div class="wa-field">
+              <label for="wa-type">Website category <span aria-hidden="true">*</span></label>
+              <select id="wa-type" required>
+                <option value="" disabled selected>Select a category</option>
+                <option>Industrial Website</option>
+                <option>Fashion Retail Shops</option>
+                <option>Performing Arts</option>
+                <option>Skin Care</option>
+                <option>Pilates, Yoga &amp; Gym</option>
+                <option>Dental</option>
+                <option>Content Creators</option>
+                <option>Another industry</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="wa-field">
+              <label for="wa-style">Preferred look &amp; feel</label>
+              <select id="wa-style">
+                <option>Help me choose</option>
+                <option>Luxury &amp; editorial</option>
+                <option>Minimal &amp; clean</option>
+                <option>Bold &amp; playful</option>
+                <option>Cinematic &amp; 3D</option>
+                <option>Professional &amp; corporate</option>
+                <option>Calm &amp; natural</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="wa-field">
+            <label for="wa-reference">A website you like <span>(optional)</span></label>
+            <input id="wa-reference" type="url" placeholder="https://" inputmode="url" autocomplete="off" maxlength="300" />
+          </div>
+          <div class="wa-field">
+            <label for="wa-notes">Tell me about your project <span>(optional)</span></label>
+            <textarea id="wa-notes" rows="3" maxlength="500" placeholder="Your goals, pages, features or ideal launch date"></textarea>
+          </div>
+
+          <details class="wa-preview">
+            <summary>Your WhatsApp message</summary>
+            <pre id="wa-message-preview"></pre>
+          </details>
+        </div>
+        <footer class="wa-footer">
+          <button class="wa-submit" type="submit"><img src="assets/whatsapp.svg" width="21" height="21" alt="" />Review in WhatsApp</button>
+        </footer>
+      </form>
+    </dialog>
+    <script src="assets/whatsapp-enquiry.js?v=1" defer></script>
     <script src="Projects/Creative Portfolio/portfolio-sites.js"></script>
     <script src="Projects/Creative Portfolio/process-background.js?v=mobile-drift-2"></script>
     <script src="Projects/Creative Portfolio/site-motion.js?v=safari-playback-1"></script>
