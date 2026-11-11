@@ -68,11 +68,21 @@
       }
 
       .brand {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.28em;
-        line-height: 1.45;
-        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+        font: 22px/1 Georgia, serif;
+      }
+
+      .brand img {
+        width: 56px;
+        height: 56px;
+        flex: none;
+        border-radius: 50%;
+        --logo-edge: radial-gradient(circle closest-side, black 72%, transparent 100%);
+        -webkit-mask-image: var(--logo-edge);
+        mask-image: var(--logo-edge);
       }
 
       .nav-links {
@@ -550,8 +560,13 @@
         }
 
         .brand {
-          max-width: 145px;
-          font-size: 13px;
+          gap: 6px;
+          font-size: 18px;
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
         }
 
         .nav-links {
@@ -909,7 +924,10 @@
     <header class="site-header">
       <div class="nav-motion" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       <nav class="nav" aria-label="Main navigation">
-        <a class="brand" href="#top">Creative Portfolio</a>
+        <a class="brand" href="#top" aria-label="jasmen.asia home">
+          <img src="assets/jasmen-asia-logo.png" width="56" height="56" alt="" />
+          <span>jasmen.asia</span>
+        </a>
         <div class="nav-links">
           <a href="#showcase">Showcase</a>
           <a href="#markets">Markets</a>
