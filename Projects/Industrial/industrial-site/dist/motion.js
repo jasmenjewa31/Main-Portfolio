@@ -1,8 +1,6 @@
 (()=>{
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  const canvas=document.querySelector('#ambient-mesh'),ctx=canvas.getContext('2d');
- const button=document.createElement('button');button.className='motion-control';button.type='button';document.body.append(button);
- let userPaused=false;try{userPaused=sessionStorage.getItem('teras-motion-paused')==='true'}catch{}
  let width=0,height=0,frame=0,last=0,phase=0;
  const pointer={x:0,y:0,tx:0,ty:0,cx:0,cy:0,active:false};
  const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
@@ -28,7 +26,7 @@
 
  }
  function loop(time){if(!window.TerasMotion.running)return;if(!last)last=time;if(time-last>=32){paint(Math.min((time-last)/1000,.07));last=time}frame=requestAnimationFrame(loop)}
- function sync(){cancelAnimationFrame(frame);last=0;const paused=userPaused||preference.matches;window.TerasMotion={running:!paused&&!document.hidden};document.documentElement.dataset.motion=window.TerasMotion.running?'running':'paused';button.textContent=paused?'▶ Motion paused':'Ⅱ Pause motion';button.setAttribute('aria-label',preference.matches?'Motion paused: reduced-motion preference enabled':paused?'Resume background animation':'Pause background animation');button.setAttribute('aria-pressed',String(paused));button.disabled=preference.matches;if(window.TerasMotion.running)frame=requestAnimationFrame(loop);else paint(0)}
- button.onclick=()=>{userPaused=!userPaused;try{sessionStorage.setItem('teras-motion-paused',String(userPaused))}catch{}sync()};preference.addEventListener('change',sync);document.addEventListener('visibilitychange',sync);addEventListener('resize',size);size();sync();
+ function sync(){cancelAnimationFrame(frame);last=0;const paused=preference.matches;window.TerasMotion={running:!paused&&!document.hidden};document.documentElement.dataset.motion=window.TerasMotion.running?'running':'paused';if(window.TerasMotion.running)frame=requestAnimationFrame(loop);else paint(0)}
+ preference.addEventListener('change',sync);document.addEventListener('visibilitychange',sync);addEventListener('resize',size);size();sync();
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('motion-in-view',e.isIntersecting)),{rootMargin:'100px'});document.querySelectorAll('.hero,.fleet-photo-wrap,.project-visual,.operations-copy,.closing').forEach(e=>observer.observe(e));
 })();

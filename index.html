@@ -917,6 +917,41 @@
       @keyframes mobile-gold-drift {
         to { background-position: 156px 0, 240px 0; }
       }
+      .designer-intro {
+        position: relative;
+        z-index: 1;
+        scroll-margin-top: 80px;
+        padding: 64px 0;
+        background: var(--midnight);
+        border-block: 1px solid var(--gold-border);
+      }
+      .designer-intro .section-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        gap: 48px;
+        align-items: center;
+      }
+      .designer-name {
+        margin: 0;
+        color: var(--pearl);
+        font: normal 56px/1.1 Georgia, serif;
+        text-transform: none;
+      }
+      .designer-intro .section-kicker { margin-bottom: 12px; }
+      .designer-credit { margin: 0 0 8px; color: var(--champagne-light); font-size: 14px; }
+      .designer-role { margin: 14px 0 0; color: var(--champagne-light); }
+      .designer-bio {
+        max-width: 64ch;
+        margin: 0;
+        color: #d0ccc4;
+        font-size: 17px;
+        line-height: 1.7;
+      }
+      @media (max-width: 720px) {
+        .designer-intro { padding: 36px 0; }
+        .designer-intro .section-inner { grid-template-columns: 1fr; gap: 18px; }
+        .designer-name { font-size: 40px; }
+      }
     </style>
     <link rel="stylesheet" href="assets/whatsapp-enquiry.css?v=3" />
   </head>
@@ -929,6 +964,7 @@
           <span>jasmen.asia</span>
         </a>
         <div class="nav-links">
+          <a href="#about-me">About Me</a>
           <a href="#showcase">Showcase</a>
           <a href="#markets">Markets</a>
           <a href="#process">Process</a>
@@ -1000,6 +1036,17 @@
             })();
           </script>
         </div>
+        <section class="designer-intro" id="about-me" aria-labelledby="about-me-title">
+          <div class="section-inner">
+            <div>
+              <h2 id="about-me-title" class="section-kicker">About Me</h2>
+              <p class="designer-credit">The creative mind behind jasmen.asia</p>
+              <p class="designer-name">Hi, I'm Jasmen.</p>
+              <p class="designer-role"><strong>Creative Developer &amp; Digital Designer.</strong></p>
+            </div>
+            <p class="designer-bio">I design and build websites for businesses and creatives. Every project starts with a conversation about your work, your audience and what you want your website to do. From there, I shape the layout, visuals and interactions so visitors can get a feel for your work and know how to get in touch.</p>
+          </div>
+        </section>
         <div class="hero-inner">
           <div>
             <p class="eyebrow">Malaysia market ready</p>

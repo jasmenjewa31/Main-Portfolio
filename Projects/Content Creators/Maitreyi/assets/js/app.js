@@ -1,9 +1,7 @@
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let paused = reduced.matches;
-const motionButton = document.querySelector('.motion-toggle');
-function setMotion(){document.body.classList.toggle('motion-paused',paused);motionButton.textContent=paused?'▷':'Ⅱ';motionButton.setAttribute('aria-label',paused?'Play animations':'Pause animations');document.documentElement.style.scrollBehavior=paused?'auto':'smooth';}
+function setMotion(){document.body.classList.toggle('motion-paused',paused);document.documentElement.style.scrollBehavior=paused?'auto':'smooth';}
 setMotion();
-motionButton.addEventListener('click',()=>{paused=!paused;setMotion()});
 reduced.addEventListener('change',e=>{paused=e.matches;setMotion()});
 document.body.classList.add('js-motion');
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');observer.unobserve(e.target)}}),{threshold:.12});

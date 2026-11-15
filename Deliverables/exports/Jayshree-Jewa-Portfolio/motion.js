@@ -1,6 +1,4 @@
 'use strict';
-// Shared motion control respects both explicit pause and OS accessibility settings.
-const motionButton = document.querySelector('.motion-toggle');
 const heroArt = document.querySelector('.hero-art');
 let motionPaused = reducedMotion.matches;
 const featuredStrip = document.querySelector('.hero-filmstrip');
@@ -21,9 +19,6 @@ featuredCards.forEach((card,index) => {
 
 function syncMotion() {
   document.body.classList.toggle('motion-paused', motionPaused);
-  document.body.classList.toggle('ambient-motion-opt-in', reducedMotion.matches && !motionPaused);
-  motionButton.textContent = motionPaused ? 'Play motion' : 'Pause motion';
-  motionButton.setAttribute('aria-pressed', String(motionPaused));
   if (motionPaused) {
     document.querySelectorAll('[style]').forEach(el => el.style.removeProperty('--parallax'));
     featuredCards.forEach((card,index) => {
@@ -32,7 +27,6 @@ function syncMotion() {
     });
   }
 }
-motionButton.addEventListener('click', () => { motionPaused = !motionPaused; syncMotion(); });
 reducedMotion.addEventListener('change', () => { motionPaused = reducedMotion.matches; syncMotion(); });
 syncMotion();
 let previousTime = performance.now();

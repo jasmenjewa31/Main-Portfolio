@@ -121,7 +121,6 @@ function updateScenes(){
 function queueScenes(){if(!motionQueued){motionQueued=true;requestAnimationFrame(updateScenes)}}
 addEventListener('scroll',queueScenes,{passive:true});
 addEventListener('resize',queueScenes,{passive:true});
-motionButton.addEventListener('click',queueScenes);
 reduced.addEventListener('change',queueScenes);
 desktopMotion.addEventListener('change',queueScenes);
 updateScenes();
