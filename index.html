@@ -8,6 +8,7 @@
       content="Explore Jasmen.asia, a Malaysian web design portfolio featuring websites for brands, creators and service businesses."
     />
     <title>Jasmen.asia | Malaysian Web Design Portfolio</title>
+    <link rel="preload" as="image" href="Media/header-040426-c7f2ced7.jpg" fetchpriority="high" />
     <link rel="canonical" href="https://jasmen.asia/" />
     <script type="application/ld+json">
       {"@context":"https://schema.org","@type":"WebSite","name":"Jasmen.asia","url":"https://jasmen.asia/"}
@@ -986,15 +987,31 @@
               const video = frame.querySelector('video');
               const motion = matchMedia('(prefers-reduced-motion: reduce)');
               if (matchMedia('(pointer: coarse), (max-width: 720px)').matches) {
-                const picture = document.createElement('picture');
-                const animated = document.createElement('source');
-                animated.media = '(prefers-reduced-motion: no-preference)';
-                animated.srcset = 'Media/header-040426-c7f2ced7.webp';
-                const still = new Image();
-                still.alt = video.getAttribute('aria-label');
-                still.src = video.poster;
-                picture.append(animated, still);
-                video.replaceWith(picture);
+                const poster = new Image();
+                poster.alt = video.getAttribute('aria-label');
+                poster.width = 854;
+                poster.height = 480;
+                poster.fetchPriority = 'high';
+                poster.src = video.poster;
+                video.replaceWith(poster);
+
+                const animation = new Image();
+                animation.alt = '';
+                animation.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none';
+                const syncMotion = () => {
+                  if (motion.matches) {
+                    animation.remove();
+                    return;
+                  }
+                  if (!animation.hasAttribute('src')) {
+                    animation.src = 'Media/header-040426-c7f2ced7.webp';
+                  }
+                  frame.appendChild(animation);
+                };
+                window.addEventListener('load', () => {
+                  syncMotion();
+                  motion.addEventListener('change', syncMotion);
+                }, { once: true });
                 return;
               }
               let fallback;
@@ -1099,7 +1116,7 @@
                 srcset="Media/Images/showcase-collage-660.webp 660w, Media/Images/showcase-collage-704.webp 704w, Media/Images/showcase-collage-1023.webp 1023w"
                 sizes="(max-width: 1080px) calc(100vw - 82px), (max-width: 1320px) calc(59vw - 93.92px), 685px"
               />
-              <img
+              <img loading="lazy" decoding="async" width="1023" height="1280"
                 src="Media/Images/4147bbe8-c0d5-4b1c-9535-98da9a227876.png"
                 alt="Collage of niche website portfolio concepts"
               />
