@@ -1087,10 +1087,23 @@
             </div>
           </div>
           <figure class="showcase-figure tilt-card parallax" data-speed="0.07">
-            <img
-              src="Media/Images/4147bbe8-c0d5-4b1c-9535-98da9a227876.png"
-              alt="Collage of niche website portfolio concepts"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                media="(max-width: 480px)"
+                srcset="Media/Images/showcase-collage-330.webp 330w, Media/Images/showcase-collage-660.webp 660w"
+                sizes="calc(100vw - 82px)"
+              />
+              <source
+                type="image/webp"
+                srcset="Media/Images/showcase-collage-660.webp 660w, Media/Images/showcase-collage-704.webp 704w, Media/Images/showcase-collage-1023.webp 1023w"
+                sizes="(max-width: 1080px) calc(100vw - 82px), (max-width: 1320px) calc(59vw - 93.92px), 685px"
+              />
+              <img
+                src="Media/Images/4147bbe8-c0d5-4b1c-9535-98da9a227876.png"
+                alt="Collage of niche website portfolio concepts"
+              />
+            </picture>
             <figcaption>
               Sample direction for niche portfolio pages, campaign microsites, and premium service websites.
             </figcaption>
