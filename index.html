@@ -357,6 +357,25 @@
         margin-bottom: 48px;
       }
 
+      .showcase-figure figcaption,
+      .markets-heading {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .showcase-figure figcaption::before,
+      .markets-heading::before {
+        content: "";
+        position: absolute;
+        inset: -16px -28px;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(ellipse farthest-corner at center, var(--midnight) 32%, transparent 100%);
+        opacity: .84;
+      }
+
+      .showcase-figure figcaption::before { inset: 0 -8px -8px; }
+
       .sector-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
