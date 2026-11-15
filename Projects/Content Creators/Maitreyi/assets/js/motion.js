@@ -29,7 +29,7 @@ const personScene = document.querySelector('#about');
 const compactPortrait = matchMedia('(max-width: 600px)');
 const diary = document.querySelector('.style-diary');
 const looks = [...document.querySelectorAll('.look-card')];
-const desktopMotion = matchMedia('(min-width: 901px) and (min-height: 620px)');
+const runwayViewport = matchMedia('(min-height: 480px)');
 const clamp = n => Math.max(0, Math.min(1, n));
 let motionQueued = false;
 let lastLook = -1;
@@ -57,7 +57,7 @@ document.querySelectorAll('.vibe-photo,.vibe-aside,.vibe-notes > div,.contact h2
 function updateScenes(){
   motionQueued = false;
   const enabled = !paused;
-  const runway = enabled && desktopMotion.matches;
+  const runway = enabled && runwayViewport.matches;
   document.body.classList.toggle('runway-motion', runway);
   document.querySelector('.scroll-progress').style.width = `${clamp(scrollY / Math.max(1,document.documentElement.scrollHeight-innerHeight))*100}%`;
   const heroProgress = enabled ? clamp(-motionHero.getBoundingClientRect().top / motionHero.offsetHeight) : 0;
@@ -122,7 +122,7 @@ function queueScenes(){if(!motionQueued){motionQueued=true;requestAnimationFrame
 addEventListener('scroll',queueScenes,{passive:true});
 addEventListener('resize',queueScenes,{passive:true});
 reduced.addEventListener('change',queueScenes);
-desktopMotion.addEventListener('change',queueScenes);
+runwayViewport.addEventListener('change',queueScenes);
 updateScenes();
 
 // Coalesce pointer input and move only a small composited glow.
