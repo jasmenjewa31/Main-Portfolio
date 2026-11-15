@@ -3,7 +3,15 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal,.prologue').forEach(el=>observer.observe(el));
 const hero=document.querySelector('.hero-image'),scene=document.querySelector('.expression');let ticking=false;
-function paint(){if(!reduced.matches&&innerWidth>700){hero.style.transform=`translateY(${Math.min(scrollY,innerHeight)*.16}px) scale(1.025)`;const box=scene.getBoundingClientRect();const progress=Math.max(0,Math.min(1,-box.top/(scene.offsetHeight-innerHeight||1)));scene.style.setProperty('--scene-scale',1.12-progress*.12)}else{hero.style.transform='none';scene.style.setProperty('--scene-scale',1)}ticking=false}
+const entranceFrame = scene.querySelector('.expression-sticky');
+function paint(){
+  hero.style.transform = !reduced.matches && innerWidth > 700
+    ? `translateY(${Math.min(scrollY,innerHeight)*.16}px) scale(1.025)` : 'none';
+  const travel = scene.offsetHeight - entranceFrame.offsetHeight;
+  const progress = travel > 0 ? Math.max(0, Math.min(1, -scene.getBoundingClientRect().top / travel)) : 1;
+  scene.style.setProperty('--scene-scale', reduced.matches ? 1 : 1 + .12 * (1 - progress));
+  ticking = false;
+}
 addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(paint);ticking=true}},{passive:true});addEventListener('resize',paint);reduced.addEventListener('change',paint);paint();
 const menu=document.querySelector('#menu'),toggle=document.querySelector('.menu-toggle');function closeMenu(){menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');document.body.classList.remove('menu-open')}
 toggle.addEventListener('click',()=>{const opening=menu.hidden;menu.hidden=!opening;toggle.setAttribute('aria-expanded',String(opening));toggle.setAttribute('aria-label',opening?'Close menu':'Open menu');document.body.classList.toggle('menu-open',opening);if(opening)menu.querySelector('a').focus()});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));

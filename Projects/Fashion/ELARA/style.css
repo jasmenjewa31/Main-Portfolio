@@ -56,3 +56,12 @@
 }
 /* Dedicated atelier portrait, composed for the curved frame. */
 .atelier-image img { object-position: center 43%; transform: none; }
+
+@media (max-width:700px) {
+  .expression img { object-position: 86% center; transform-origin: 78% 40%; }
+}
+@media (max-width:700px) and (prefers-reduced-motion:no-preference) {
+  .expression { height: 145vh; height: 145svh; min-height: 0; }
+  .expression-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; min-height: 0; }
+  .expression-copy { top: clamp(48px, 30svh, 280px); }
+}
