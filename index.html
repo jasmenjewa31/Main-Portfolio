@@ -952,7 +952,8 @@
       .designer-role { margin: 6px 0 0; color: var(--champagne-light); }
       .designer-bio { margin: 0; font-size: 17px; align-self: center; }
     </style>
-    <link rel="stylesheet" href="assets/whatsapp-enquiry.css?v=3" />
+    <link rel="preload" as="style" href="assets/whatsapp-enquiry.css?v=3" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="assets/whatsapp-enquiry.css?v=3" /></noscript>
   </head>
   <body>
     <header class="site-header">
@@ -1279,8 +1280,8 @@
       </form>
     </dialog>
     <script src="assets/whatsapp-enquiry.js?v=1" defer></script>
-    <script src="Projects/Creative Portfolio/portfolio-sites.js"></script>
-    <script src="Projects/Creative Portfolio/process-background.js?v=mobile-drift-2"></script>
-    <script src="Projects/Creative Portfolio/site-motion.js?v=safari-playback-1"></script>
+    <script defer src="Projects/Creative Portfolio/portfolio-sites.js"></script>
+    <script defer src="Projects/Creative Portfolio/process-background.js?v=mobile-drift-2"></script>
+    <script defer src="Projects/Creative Portfolio/site-motion.js?v=safari-playback-1"></script>
   </body>
 </html>
