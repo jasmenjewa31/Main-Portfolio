@@ -649,6 +649,17 @@
 
         .showcase { padding-bottom: 16px; }
         .showcase-figure { min-width: 0; }
+        .showcase-figure picture {
+          display: block;
+          position: relative;
+          width: 100%;
+          aspect-ratio: 4 / 5;
+        }
+        .showcase-figure img {
+          position: absolute;
+          inset: 0;
+          height: 100%;
+        }
         .showcase + .markets { padding-top: 16px; }
 
         .sector-grid {
