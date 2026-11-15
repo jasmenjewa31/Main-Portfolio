@@ -648,6 +648,7 @@
         }
 
         .showcase { padding-bottom: 16px; }
+        .showcase-figure { min-width: 0; }
         .showcase + .markets { padding-top: 16px; }
 
         .sector-grid {
@@ -1108,12 +1109,7 @@
             <picture>
               <source
                 type="image/webp"
-                media="(max-width: 480px)"
-                srcset="Media/Images/showcase-collage-330.webp 330w, Media/Images/showcase-collage-660.webp 660w"
-                sizes="calc(100vw - 82px)"
-              />
-              <source
-                type="image/webp"
+                media="not all and (max-width: 720px)"
                 srcset="Media/Images/showcase-collage-660.webp 660w, Media/Images/showcase-collage-704.webp 704w, Media/Images/showcase-collage-1023.webp 1023w"
                 sizes="(max-width: 1080px) calc(100vw - 82px), (max-width: 1320px) calc(59vw - 93.92px), 685px"
               />
