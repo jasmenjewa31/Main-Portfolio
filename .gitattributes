@@ -1,0 +1,3 @@
+# Preserve generated asset bytes so content-hashed filenames match deployment.
+"Projects/Creative Portfolio/process-background.*.js" -text
+assets/whatsapp-enquiry.min.*.css -text
