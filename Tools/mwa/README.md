@@ -14,6 +14,7 @@ The homepage links to seven demos under `/demos/`: `industrial`, `performing-art
 - Clean HTML documents declare `https://jasmen.asia` canonical URLs and Open Graph URLs. The sitemap contains only the canonical pages, not the legacy documents.
 - Homepage routing and motion scripts now load from versioned `/assets/` URLs. Original scripts remain for compatibility.
 - No styles, text, animations, interactions, or layout were redesigned. The wellness pictures use lossless responsive WebP while preserving the CSS image frame and source aspect ratio.
+- The skincare demo's two large PNGs now use full-resolution lossless WebP. Decoded pixels were verified identical, reducing their combined size from 4,847,292 to 3,312,756 bytes. The original film, poster framing, colours and animation remain unchanged.
 
 GitHub Pages configuration was checked through the GitHub API. HTTPS enforcement was enabled without changing `CNAME`, DNS, or the publishing branch. Host/protocol redirects are provided by GitHub Pages, separately from the browser-based legacy path forwarding above.
 
