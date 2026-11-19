@@ -55,8 +55,8 @@ const waPath=await output('assets/whatsapp-enquiry.min.css',Buffer.from(minify(w
 html=html.replace(/assets\/whatsapp-enquiry(?:\.min\.[a-f0-9]+)?\.css(?:\?v=3)?/g,waPath);
 const motionName='Projects/Creative Portfolio/process-background.js';
 const motion=await fs.readFile(path.join(root,motionName));
-const motionPath=await output(motionName,motion);
-html=html.replace(/Projects\/Creative Portfolio\/process-background(?:\.[a-f0-9]+)?\.js(?:\?v=[^"]+)?/g,motionPath);
+const motionPath=await output('assets/process-background.js',motion);
+html=html.replace(/(?:Projects\/Creative Portfolio\/|assets\/)process-background(?:\.[a-f0-9]+)?\.js(?:\?v=[^"]+)?/g,motionPath);
 await fs.writeFile(htmlFile,html);
 await fs.mkdir(report,{recursive:true});
 await fs.writeFile(path.join(report,'asset-manifest.json'),JSON.stringify(manifest,null,2));

@@ -1,0 +1,81 @@
+/* Brand-facing portfolio: clear offers, platform formats and enquiry flow. */
+.brand-hero-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.brand-secondary{font:500 12px 'Manrope',sans-serif;color:#e6c8b0;text-decoration:underline;text-underline-offset:6px}
+.hero.cinematic.couture-opening .hero-title{font-size:clamp(62px,7.3vw,135px)}
+.hero.cinematic.couture-opening .hero-title .hero-line:nth-child(3){padding-left:5%}
+.cover-description{font-size:clamp(14px,1.3vw,21px);max-width:40ch}
+.cover-description>em{font-family:'Manrope',sans-serif;font-size:.86em;font-style:normal;font-weight:400;line-height:1.7;max-width:40ch}
+.cover-disciplines{font-size:12px;gap:13px;flex-wrap:wrap}.cover-disciplines span+span:before{content:' / ';margin-right:13px;color:#b28070}
+.cover-kicker{font-size:9px}.cover-kicker .edition-label{margin-left:12px}
+.brand-platforms{padding:64px 6%;background:linear-gradient(135deg,#381421,#240d16);color:#f1dcc6;border-top:1px solid #d4ac8833;border-bottom:1px solid #d4ac8833}
+.brand-platforms h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(37px,4.1vw,70px);line-height:1.05;margin:20px 0 12px;letter-spacing:-.025em}
+.brand-platforms h2 em{color:#e0ad9d}.brand-platforms>div>p{font-size:14px;line-height:1.7;color:#d8bcae}
+.platform-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:38px}
+.platform-grid article{padding:25px 25px 20px 0;border-top:1px solid #ddb59655}
+.platform-grid article+article{padding-left:25px;border-left:1px solid #ddb59633}
+.platform-grid article>span{font:10px 'Manrope',sans-serif;letter-spacing:.12em;color:#c49683}
+.platform-grid h3{font:500 clamp(24px,2.5vw,42px) 'Cormorant Garamond',serif;margin:14px 0 12px;color:#f3dac0}
+.platform-grid p{font-size:13px;line-height:1.75;max-width:25ch;color:#dfc8bb}
+.brand-platforms .platform-note{font-size:11px;line-height:1.7;max-width:90ch;color:#bb9d90;margin-top:25px}
+.brand-services{background:#211018}.brand-services .service-list h3{font-size:clamp(26px,3.5vw,54px)}
+.brand-services .service-list details p{max-width:780px;font-size:16px;line-height:1.85}
+.scope-strip{margin-top:35px;padding:26px 0;border-top:1px solid #d7ac8833;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.scope-strip>span{font-size:10px;letter-spacing:.12em;color:#d8b499}.scope-strip p{font-size:13px;color:#dfc7b8;line-height:1.7}.scope-strip a{font-size:13px;color:#f1d4b3;text-decoration:underline;text-underline-offset:5px}
+.contact-detail{font-size:13px!important;color:#d7b6a8;margin-top:18px;line-height:1.8!important}
+.contact-transparency{font-size:11px;line-height:1.7;color:#e1c2b4;margin-top:32px;max-width:78ch}
+.section-heading small{display:block;font-size:11px;line-height:1.7;max-width:40ch;margin-top:15px;opacity:.85}
+.vibe-composition .vibe-aside:before{content:'FOR YOUR NEXT CAMPAIGN'}
+#brief-dialog{width:min(820px,94vw)}#brief-dialog .dialog-content{padding:45px}#brief-dialog h2{font-size:54px}#brief-dialog .dialog-content>p{font-size:14px;line-height:1.7}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+#brief-form label{font-size:13px;line-height:1.5}#brief-form input,#brief-form select,#brief-form textarea{border:1px solid #825b5166;border-radius:3px;background:#f3e5d6;color:#401b23;padding:12px;width:100%;font:14px 'DM Sans',sans-serif;display:block;margin-top:8px;min-width:0}
+#brief-form fieldset{margin:0 0 22px;padding:15px;border:1px solid #825b5155}#brief-form legend{font-size:13px;padding:0 6px}
+.brief-platforms{display:flex;gap:14px;flex-wrap:wrap}.brief-platforms label{display:flex;align-items:center;gap:7px;margin:0}#brief-form input[type=checkbox]{width:16px;height:16px;margin:0;accent-color:#66273b}
+#brief-status:not(:empty){padding:20px;border-left:3px solid #743749;background:#ddc5b680;font-size:14px;line-height:1.7;white-space:pre-line}
+#download-brief{margin-top:16px;background:transparent;color:#4d1a2a;border-bottom:1px solid;padding:10px 0;font:600 13px 'Manrope',sans-serif;cursor:pointer}
+footer{flex-wrap:wrap}footer .mock-note{flex-basis:100%;font-size:10px;line-height:1.7;color:#bd9c8d;max-width:95ch}
+.skip{position:fixed;left:12px;top:12px;transform:translateY(-180%);z-index:1000}.skip:focus{transform:translateY(0)}
+@media(max-width:700px){.hero.cinematic.couture-opening .hero-title{font-size:clamp(26px,7.2vw,50px)}.cover-kicker{font-size:7px}.cover-kicker .edition-label{margin:4px 0 0}.cover-description{font-size:12px;max-width:23ch}.cover-description>em{font-size:10px;max-width:24ch}.brand-hero-actions{gap:15px}.brand-secondary{font-size:10px}.cover-disciplines{font-size:9px;gap:8px}.cover-disciplines span+span:before{display:none}.cover-footer>span:last-child{max-width:20ch;text-align:right}.brand-platforms{padding:45px 7%}.platform-grid{grid-template-columns:1fr 1fr;gap:20px 0}.platform-grid article{padding:18px 12px 0 0}.platform-grid article+article{padding-left:14px}.platform-grid article:nth-child(3){border-left:0;padding-left:0}.platform-grid p{font-size:12px}.brand-services .section-heading h2{font-size:48px}.contact h2{font-size:57px}.brief-grid{grid-template-columns:1fr}#brief-dialog .dialog-content{padding:38px 22px}#brief-dialog h2{font-size:42px}.scope-strip{gap:18px}}
+@media(max-width:700px){.couture-opening .cover-stage{padding-top:175px;min-height:700px}}
+/* Sculptural, moving silk behind the partnership chapter. */
+.brand-services{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 95% 35%,#562036,#251019 67%)}
+.partnership-art{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:paint}
+.partnership-art svg{position:absolute;inset:-8%;width:116%;height:116%;opacity:.48}
+.partnership-art:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#210b1694,transparent 70%);pointer-events:none}
+.partnership-glow{position:absolute;inset:-30%;background:linear-gradient(112deg,transparent 35%,#f3bb9810 46%,#e8a2b221 51%,transparent 64%);animation:partnership-light 13s ease-in-out infinite alternate}
+.partnership-fold{transform-origin:82% 45%;animation:partnership-fold 20s ease-in-out infinite alternate}
+.partnership-flow{transform-origin:50% 85%;animation:partnership-flow 16s ease-in-out infinite alternate;opacity:.7}
+.partnership-contours{animation:partnership-light 24s ease-in-out infinite alternate;opacity:.55}
+.brand-services .service-list details{background:linear-gradient(110deg,#220d172e,#35132118);transition:background-color .35s}
+.brand-services .service-list details[open]{background-color:#38152370}
+.brand-services .service-list summary:hover{background:#bd7e8310}
+.brand-services .service-list details p{color:#f0d6c5;padding-bottom:20px;margin-bottom:10px}
+.brand-services .section-heading>p{color:#ecd0bd}
+@keyframes partnership-light{from{transform:translate3d(-6%,0,0)}to{transform:translate3d(8%,3%,0)}}
+@keyframes partnership-fold{from{transform:translate3d(40px,-25px,0) rotate(-5deg)}to{transform:translate3d(-55px,45px,0) rotate(7deg)}}
+@keyframes partnership-flow{from{transform:translate3d(-40px,40px,0) rotate(-3deg)}to{transform:translate3d(40px,-30px,0) rotate(4deg)}}
+.services-resting .partnership-art *,.motion-paused .partnership-art *{animation-play-state:paused!important}
+@media(max-width:700px){.partnership-art svg{opacity:.36}.partnership-fold{animation-duration:26s}.brand-services .service-list details p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.partnership-art *{animation:none!important}}
+/* Keep the moving silk dimensional without washing out the copy. */
+.partnership-art svg{opacity:.6}
+.partnership-contours{stroke-dasharray:900 170;animation:partnership-trace 18s linear infinite;opacity:.7}
+@keyframes partnership-trace{from{stroke-dashoffset:1070}to{stroke-dashoffset:0}}
+.brand-services .section-heading{flex-wrap:wrap;gap:28px}
+.brand-services .section-heading>p{max-width:32ch}
+@media(max-width:700px){.partnership-art svg{opacity:.4}}
+@media(prefers-reduced-motion:reduce){.partnership-contours{animation:none}}
+/* Responsive masthead: natural layout, transparent artwork, no blend tricks. */
+header{display:grid;grid-template-columns:minmax(280px,1fr) auto 34px;gap:28px;align-items:center;height:auto;min-height:0;padding:22px 5%;background:transparent!important;mix-blend-mode:normal}
+header .atelier-wordmark{position:static;display:block;width:340px;max-width:100%;padding:0;margin:0;transform:none;translate:none;line-height:1}
+header .atelier-wordmark .floral-signature{display:block;position:relative;width:100%;height:140px;margin:0;transform:none;translate:none;filter:none;mix-blend-mode:normal;isolation:auto}
+header .atelier-wordmark .floral-emblem{display:block;position:absolute;inset:0 auto auto 0;width:125px;height:136px;margin:0;overflow:visible;mix-blend-mode:normal}
+header .floral-emblem img{position:static;display:block;width:100%;height:100%;max-width:100%;object-fit:contain;filter:none}
+header .atelier-wordmark .floral-continuation{position:absolute;left:106px;top:79px;margin:0;display:block;font:500 36px/1 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em;color:#efd1a6;text-shadow:none}
+header .atelier-wordmark:hover .floral-signature{filter:none}
+header nav{display:flex;width:auto;gap:28px;margin:0;align-items:center;justify-content:flex-end}
+header nav a{white-space:nowrap;font-size:13px}
+header .motion-toggle{margin:0;width:32px;height:32px;justify-self:end}
+.hero.couture-opening .cover-stage{padding-top:220px}
+@media(max-width:1000px){header{grid-template-columns:1fr 32px;gap:16px;padding:18px 6%}header .atelier-wordmark{grid-column:1;grid-row:1}header .motion-toggle{grid-column:2;grid-row:1;align-self:start;margin-top:12px}header nav{grid-column:1/-1;grid-row:2;justify-content:space-between;gap:16px;padding-top:14px;border-top:1px solid #d7b18b26}header nav>a:first-child,header nav>a:nth-child(2){display:block}.hero.couture-opening .cover-stage{padding-top:255px}}
+@media(max-width:700px){header{padding:18px 6% 14px;gap:10px}header .atelier-wordmark{width:280px}header .atelier-wordmark .floral-signature{height:112px}header .atelier-wordmark .floral-emblem{width:102px;height:111px}header .atelier-wordmark .floral-continuation{left:87px;top:64px;font-size:29px}header nav a{font-size:11px}header .nav-contact{padding:10px 15px}.hero.couture-opening .cover-stage{padding-top:225px}}
+@media(max-width:380px){header{column-gap:4px}header .atelier-wordmark{width:245px}header .atelier-wordmark .floral-continuation{font-size:26px;top:67px}header nav{gap:10px}header nav a{font-size:10px}}

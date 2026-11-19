@@ -1,0 +1,57 @@
+[
+  {
+    "old": "/Projects/Industrial/industrial-site/dist/index.html",
+    "clean": "/demos/industrial/",
+    "file": "demos/industrial/index.html"
+  },
+  {
+    "old": "/Deliverables/exports/Jayshree-Jewa-Portfolio/index.html",
+    "clean": "/demos/performing-arts/",
+    "file": "demos/performing-arts/index.html"
+  },
+  {
+    "old": "/Projects/Skin Care/AURA/index.html",
+    "clean": "/demos/skin-care/",
+    "file": "demos/skin-care/index.html"
+  },
+  {
+    "old": "/Projects/Fashion/ELARA/index.html",
+    "clean": "/demos/fashion-retail/",
+    "file": "demos/fashion-retail/index.html"
+  },
+  {
+    "old": "/Projects/Lotus Life Style/Working Project/dist/about.html",
+    "clean": "/demos/pilates-yoga-gym/about.html",
+    "file": "demos/pilates-yoga-gym/about.html"
+  },
+  {
+    "old": "/Projects/Lotus Life Style/Working Project/dist/gym.html",
+    "clean": "/demos/pilates-yoga-gym/gym.html",
+    "file": "demos/pilates-yoga-gym/gym.html"
+  },
+  {
+    "old": "/Projects/Lotus Life Style/Working Project/dist/index.html",
+    "clean": "/demos/pilates-yoga-gym/",
+    "file": "demos/pilates-yoga-gym/index.html"
+  },
+  {
+    "old": "/Projects/Lotus Life Style/Working Project/dist/pilates.html",
+    "clean": "/demos/pilates-yoga-gym/pilates.html",
+    "file": "demos/pilates-yoga-gym/pilates.html"
+  },
+  {
+    "old": "/Projects/Lotus Life Style/Working Project/dist/yoga.html",
+    "clean": "/demos/pilates-yoga-gym/yoga.html",
+    "file": "demos/pilates-yoga-gym/yoga.html"
+  },
+  {
+    "old": "/Projects/Dental/Aurelle/index.html",
+    "clean": "/demos/dental/",
+    "file": "demos/dental/index.html"
+  },
+  {
+    "old": "/Projects/Content Creators/Maitreyi/index.html",
+    "clean": "/demos/content-creators/",
+    "file": "demos/content-creators/index.html"
+  }
+]
