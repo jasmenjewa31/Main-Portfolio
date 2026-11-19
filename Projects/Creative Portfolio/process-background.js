@@ -83,6 +83,12 @@ document.querySelectorAll('.hero, .showcase, .markets, .process, .contact').forE
     }
   }
   function resize() {
+    // Mobile trails are composited CSS layers; no full-section bitmap is needed.
+    if (mobileDrift.matches) {
+      canvas.width = canvas.height = 1;
+      refresh();
+      return;
+    }
     const rect = section.getBoundingClientRect();
     width = Math.max(1, rect.width);
     height = Math.max(1, rect.height);
@@ -107,8 +113,10 @@ document.querySelectorAll('.hero, .showcase, .markets, .process, .contact').forE
   section.addEventListener('pointerleave', () => { pointer.targetStrength = 0; });
   document.addEventListener('visibilitychange', refresh);
   window.addEventListener('pageshow', refresh);
-  if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', refresh);
-  else if (reducedMotion.addListener) reducedMotion.addListener(refresh);
+  if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', resize);
+  else if (reducedMotion.addListener) reducedMotion.addListener(resize);
+  if (mobileDrift.addEventListener) mobileDrift.addEventListener('change', resize);
+  else if (mobileDrift.addListener) mobileDrift.addListener(resize);
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(section);
   else window.addEventListener('resize', resize, { passive: true });
   if ('IntersectionObserver' in window) {

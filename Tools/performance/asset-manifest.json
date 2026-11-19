@@ -1,0 +1,38 @@
+{
+  "Media/Images/collage-mobile-330.webp": {
+    "path": "Media/Images/collage-mobile-330.aa88b1686b77.webp",
+    "bytes": 176782
+  },
+  "Media/Images/collage-mobile-660.webp": {
+    "path": "Media/Images/collage-mobile-660.7ea597573568.webp",
+    "bytes": 682478
+  },
+  "Media/Images/collage-mobile-1023.webp": {
+    "path": "Media/Images/collage-mobile-1023.b9bd89a5286f.webp",
+    "bytes": 1518278
+  },
+  "assets/jasmen-logo-56.webp": {
+    "path": "assets/jasmen-logo-56.5d1a5f1e0832.webp",
+    "bytes": 2844
+  },
+  "assets/jasmen-logo-112.webp": {
+    "path": "assets/jasmen-logo-112.cb34318bad1c.webp",
+    "bytes": 7908
+  },
+  "assets/jasmen-logo-168.webp": {
+    "path": "assets/jasmen-logo-168.baa050ec44ad.webp",
+    "bytes": 14180
+  },
+  "inlineCSS": {
+    "beforeBytes": 32814,
+    "afterBytes": 21432
+  },
+  "assets/whatsapp-enquiry.min.css": {
+    "path": "assets/whatsapp-enquiry.min.54f757e878ff.css",
+    "bytes": 4656
+  },
+  "Projects/Creative Portfolio/process-background.js": {
+    "path": "Projects/Creative Portfolio/process-background.2f714d1605f1.js",
+    "bytes": 6106
+  }
+}
