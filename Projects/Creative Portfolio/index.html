@@ -7,17 +7,14 @@
     <link rel="canonical" href="https://jasmen.asia/" />
     <title>Jasmen.asia</title>
     <script>
-      const destination = new URL("../../index.html", window.location.href);
-      if (destination.protocol === "https:" || destination.protocol === "http:") {
-        destination.pathname = destination.pathname.replace(/index\.html$/, "");
-      }
+      const destination = new URL("../../", window.location.href);
       destination.search = window.location.search;
       destination.hash = window.location.hash;
       window.location.replace(destination.href);
     </script>
-    <noscript><meta http-equiv="refresh" content="0; url=../../index.html" /></noscript>
+    <noscript><meta http-equiv="refresh" content="0; url=../../" /></noscript>
   </head>
   <body>
-    <p><a href="../../index.html">Open Jasmen.asia</a></p>
+    <p><a href="../../">Open Jasmen.asia</a></p>
   </body>
 </html>

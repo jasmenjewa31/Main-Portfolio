@@ -4,7 +4,9 @@
 
 The homepage links to seven demos under `/demos/`: `industrial`, `performing-arts`, `skin-care`, `fashion-retail`, `pilates-yoga-gym`, `dental`, and `content-creators`.
 
-`routes.json` maps the 11 former document URLs to their canonical destinations. The wellness demo also has `about.html`, `gym.html`, `pilates.html`, and `yoga.html`.
+`routes.json` maps the 11 former demo document URLs plus the former creative portfolio homepage to their canonical destinations. The wellness demo also has `about.html`, `gym.html`, `pilates.html`, and `yoga.html`.
+
+Run `node Tools/check-links.cjs --live` and `node Tools/mwa/check-routes.cjs` from the repository root before publishing. The link checker covers the published demos, shared assets and legacy files, including static `srcset` references and Linux filename case. Dynamic template URLs require browser checks. The route checker covers canonical/Open Graph URLs, sitemap membership, all 12 legacy forwarding scripts with query strings/fragments, refresh/link fallbacks, and the seven homepage project links.
 
 ## Compatibility and maintenance
 

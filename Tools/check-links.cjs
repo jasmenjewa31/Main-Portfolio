@@ -6,21 +6,27 @@ function walk(dir) { for (const d of fs.readdirSync(dir, {withFileTypes:true})) 
 walk(root);
 const issues=[]; let checked=0;
 const rel=p=>path.relative(root,p).replaceAll('\\','/');
-const live = /^(index\.html$|Projects\/(Creative Portfolio|Industrial\/industrial-site\/dist|Skin Care\/AURA|Fashion\/ELARA|Lotus Life Style\/Working Project\/dist|Dental\/Aurelle|Content Creators\/Maitreyi)\/|Deliverables\/exports\/Jayshree-Jewa-Portfolio\/)/;
+const live = /^(index\.html$|demos\/|assets\/|Projects\/(Creative Portfolio|Industrial\/industrial-site\/dist|Skin Care\/AURA|Fashion\/ELARA|Lotus Life Style\/Working Project\/dist|Dental\/Aurelle|Content Creators\/Maitreyi)\/|Deliverables\/exports\/Jayshree-Jewa-Portfolio\/)/;
 for(const file of files.filter(p=>/\.(html|css|js)$/i.test(p) && (!process.argv.includes('--live') || live.test(rel(p))))) {
  const text=fs.readFileSync(file,'utf8');
  const refs=[...text.matchAll(/(?:\b(?:src|href|poster)\s*=\s*["']([^"']+)["']|url\(\s*["']?([^\s)'";]+)["']?\s*\)|\burl\s*:\s*["']([^"']+)["'])/g)];
+ for (const set of text.matchAll(/\bsrcset\s*=\s*["']([^"']+)["']/g)) {
+  if (set[1].trim().startsWith('data:') || set[1].includes('${')) continue;
+  for (const candidate of set[1].split(',')) refs.push({1:candidate.trim().split(/\s+/)[0],index:set.index});
+ }
  for(const m of refs) {
   const raw=m[1]||m[2]||m[3];
   if(/^(?:[a-z][a-z\d+.-]*:|\/\/|#|\$|\{)/i.test(raw)) continue;
   const url=raw.split(/[?#]/)[0]; if(!url) continue;
   let decoded; try {decoded=decodeURIComponent(url);} catch {continue;}
   if(decoded.startsWith('#')) continue;
-  const target=path.resolve(path.dirname(file),decoded); checked++;
+  const target=decoded.startsWith('/') ? path.resolve(root,'.'+decoded) : path.resolve(path.dirname(file),decoded); checked++;
   const line=text.slice(0,m.index).split('\n').length;
-  if(!fs.existsSync(target)) {issues.push({file:rel(file),line,url:raw,problem:'Missing target'});continue;}
   let current=root; const parts=path.relative(root,target).split(path.sep);
-  if(parts[0]==='..') {issues.push({file:rel(file),line,url:raw,problem:'Outside site root'});continue;}
+  if(parts[0]==='..' || path.isAbsolute(path.relative(root,target))) {issues.push({file:rel(file),line,url:raw,problem:'Outside site root'});continue;}
+  if(!fs.existsSync(target)) {issues.push({file:rel(file),line,url:raw,problem:'Missing target'});continue;}
+  if(fs.statSync(target).isDirectory() && !fs.existsSync(path.join(target,'index.html'))) {issues.push({file:rel(file),line,url:raw,problem:'Directory has no index.html'});continue;}
+  if(target===root) continue;
   for(const part of parts) { const names=fs.readdirSync(current); const actual=names.find(n=>n.toLowerCase()===part.toLowerCase()); if(actual!==part) {issues.push({file:rel(file),line,url:raw,problem:'Filename case mismatch'});break;} current=path.join(current,part); }
  }
 }

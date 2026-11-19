@@ -53,5 +53,10 @@
     "old": "/Projects/Content Creators/Maitreyi/index.html",
     "clean": "/demos/content-creators/",
     "file": "demos/content-creators/index.html"
+  },
+  {
+    "old": "/Projects/Creative Portfolio/index.html",
+    "clean": "/",
+    "file": "index.html"
   }
 ]
